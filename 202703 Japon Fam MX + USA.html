@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Itinerario Japón 2027</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Pantone 17-1818 — Red Violet */
+    --red-violet: #B5324E;
+    --red-violet-light: #C9556A;
+    --red-violet-pale: #F2DDE2;
+    /* Pantone 16-0110 TCX — Aloe Green */
+    --olive: #8B9E6E;
+    --olive-light: #A8BC8A;
+    --olive-pale: #EBF0E4;
+    /* Pantone 11-0601 TCX — Blanc de Blanc */
+    --white: #F5F0E8;
+    --gray-50: #EDE8DF;
+    --gray-100: #E0D9CE;
+    --gray-200: #C8BFB2;
+    --gray-400: #9A9088;
+    --gray-600: #5C544C;
+    --gray-800: #2E2820;
+    --black: #8B9E6E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--white);
+    color: var(--gray-800);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 430px;
+    margin: 0 auto;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .hero {
+    background: var(--black);
+    min-height: 56dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 0 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 60%, rgba(181,50,78,0.08) 0%, transparent 70%),
+      linear-gradient(175deg, #F5EDE3 0%, #EDE0D0 100%);
+  }
+
+  .hero-ornament {
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    border: 1px solid rgba(181,50,78,0.25);
+    pointer-events: none;
+  }
+  .hero-ornament::after {
+    content: '';
+    position: absolute;
+    inset: 30px;
+    border-radius: 50%;
+    border: 1px solid rgba(181,50,78,0.15);
+  }
+
+  .hero-tag {
+    position: relative;
+    display: inline-block;
+    background: var(--red-violet);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    margin: 0 24px 20px;
+    width: fit-content;
+  }
+
+  .hero-title {
+    position: relative;
+    font-family: 'Playfair Display', serif;
+    font-size: 44px;
+    font-weight: 700;
+    color: var(--gray-800);
+    line-height: 1;
+    padding: 0 24px;
+    letter-spacing: -1px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--red-violet);
+  }
+
+  .hero-dates {
+    position: relative;
+    margin: 20px 24px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .hero-dates span {
+    font-size: 13px;
+    color: var(--gray-600);
+    letter-spacing: 0.05em;
+  }
+
+  .hero-dates .dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--red-violet);
+    flex-shrink: 0;
+  }
+
+  .hero-scroll {
+    position: relative;
+    margin: 32px 24px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--gray-400);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .hero-scroll::before {
+    content: '';
+    display: block;
+    width: 32px; height: 1px;
+    background: var(--red-violet);
+  }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(245,240,232,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .nav-inner {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 0 16px;
+    gap: 0;
+  }
+
+  .nav-inner::-webkit-scrollbar { display: none; }
+
+  .nav-btn {
+    flex-shrink: 0;
+    padding: 14px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .nav-btn.active {
+    color: var(--red-violet);
+    border-bottom-color: var(--red-violet);
+  }
+
+  .section {
+    display: none;
+    animation: fadeUp 0.35s ease;
+  }
+
+  .section.active { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-header {
+    padding: 32px 24px 24px;
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red-violet);
+    margin-bottom: 6px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1.1;
+  }
+
+  .section-sub {
+    margin-top: 8px;
+    font-size: 13px;
+    color: var(--gray-600);
+    line-height: 1.5;
+  }
+
+  .overview-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .overview-cell {
+    padding: 20px 16px;
+    border-right: 1px solid var(--gray-100);
+    text-align: center;
+  }
+
+  .overview-cell:last-child { border-right: none; }
+
+  .overview-cell .val {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1;
+  }
+
+  .overview-cell .lbl {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-top: 4px;
+  }
+
+  .city-divider {
+    margin: 20px 16px 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .city-divider .line { flex:1; height:1px; background: var(--gray-100); }
+  .city-divider .label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--olive);
+    white-space: nowrap;
+  }
+
+  .timeline { padding: 24px 0; }
+
+  .day-card {
+    position: relative;
+    margin: 0 16px 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--white);
+    border: 1px solid var(--gray-100);
+    transition: box-shadow 0.2s;
+  }
+
+  .day-card:active {
+    box-shadow: 0 4px 20px rgba(181,50,78,0.12);
+  }
+
+  .day-header {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .day-num {
+    width: 60px;
+    flex-shrink: 0;
+    background: var(--black);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 8px;
+  }
+
+  .day-num .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1;
+  }
+
+  .day-num .mon {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-top: 2px;
+  }
+
+  .day-info {
+    flex: 1;
+    padding: 14px 16px;
+  }
+
+  .day-label {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red-violet);
+    margin-bottom: 2px;
+  }
+
+  .day-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1.2;
+  }
+
+  .day-subtitle {
+    font-size: 12px;
+    color: var(--gray-400);
+    margin-top: 3px;
+  }
+
+  .day-body {
+    padding: 0 16px 16px;
+    border-top: 1px solid var(--gray-100);
+  }
+
+  .act-list { list-style: none; padding-top: 14px; }
+
+  .act-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--gray-50);
+  }
+
+  .act-item:last-child { border-bottom: none; }
+
+  .act-dot {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--red-violet-pale);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .act-dot svg { width: 11px; height: 11px; }
+
+  .act-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-800);
+    line-height: 1.3;
+  }
+
+  .act-note {
+    font-size: 11px;
+    color: var(--gray-400);
+    margin-top: 1px;
+  }
+
+  .tag-free {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--olive);
+    background: var(--olive-pale);
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+
+  .tag-paid {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--red-violet);
+    background: var(--red-violet-pale);
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+
+  .hotel-grid { padding: 20px 16px; display: flex; flex-direction: column; gap: 16px; }
+
+  .hotel-card {
+    border-radius: 12px;
+    border: 1px solid var(--gray-100);
+    overflow: hidden;
+  }
+
+  .hotel-card.recommended {
+    border-color: var(--red-violet);
+    box-shadow: 0 0 0 1px var(--red-violet);
+  }
+
+  .hotel-badge {
+    background: var(--red-violet);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    text-align: center;
+  }
+
+  .hotel-badge.pending {
+    background: var(--gray-600);
+  }
+
+  .hotel-body { padding: 16px; }
+
+  .hotel-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--black);
+  }
+
+  .hotel-stars {
+    color: var(--red-violet);
+    font-size: 11px;
+    margin-top: 3px;
+  }
+
+  .hotel-perks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 12px 0;
+  }
+
+  .perk-tag {
+    font-size: 11px;
+    background: var(--gray-50);
+    color: var(--gray-600);
+    padding: 3px 9px;
+    border-radius: 20px;
+    border: 1px solid var(--gray-100);
+  }
+
+  .room-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 0;
+    border-top: 1px solid var(--gray-100);
+  }
+
+  .room-row:first-of-type { border-top: none; padding-top: 0; }
+
+  .room-label {
+    font-size: 12px;
+    color: var(--gray-600);
+  }
+
+  .room-label strong { color: var(--gray-800); font-weight: 500; }
+
+  .room-price {
+    text-align: right;
+  }
+
+  .room-price .tot {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--black);
+  }
+
+  .room-price .pp {
+    font-size: 10px;
+    color: var(--gray-400);
+  }
+
+  .hotel-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--red-violet);
+    text-decoration: none;
+    border-bottom: 1px solid var(--red-violet);
+  }
+
+  .costs-wrap { padding: 0 16px 20px; }
+
+  .costs-group {
+    margin-bottom: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--gray-100);
+  }
+
+  .costs-group-title {
+    background: var(--red-violet);
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 8px 14px;
+  }
+
+  .cost-row {
+    display: flex;
+    align-items: center;
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--gray-50);
+    gap: 10px;
+  }
+
+  .cost-row:last-child { border-bottom: none; }
+
+  .cost-name {
+    font-size: 13px;
+    color: var(--gray-800);
+    flex: 1;
+  }
+
+  .cost-pp {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-800);
+    text-align: right;
+    min-width: 100px;
+  }
+
+  .cost-note {
+    font-size: 11px;
+    color: var(--gray-400);
+    display: block;
+    margin-top: 1px;
+  }
+
+  .info-wrap { padding: 20px 16px; display: flex; flex-direction: column; gap: 16px; }
+
+  .info-block {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--gray-100);
+  }
+
+  .info-block-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: var(--gray-50);
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .info-block-title .icon {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    background: var(--red-violet-pale);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .info-block-title .icon svg { width: 14px; height: 14px; color: var(--red-violet); }
+
+  .info-block-title span {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--black);
+  }
+
+  .info-list { list-style: none; }
+
+  .info-list li {
+    display: flex;
+    gap: 10px;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--gray-50);
+    font-size: 13px;
+    color: var(--gray-800);
+    line-height: 1.4;
+  }
+
+  .info-list li:last-child { border-bottom: none; }
+
+  .info-list li::before {
+    content: '—';
+    color: var(--red-violet);
+    flex-shrink: 0;
+    font-weight: 700;
+  }
+
+  .footer {
+    padding: 32px 24px;
+    text-align: center;
+    border-top: 1px solid var(--gray-100);
+    background: var(--black);
+    color: var(--gray-400);
+    font-size: 12px;
+  }
+
+  .footer strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .footer-vv {
+    margin-top: 16px;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--red-violet);
+  }
+
+  .notice {
+    margin: 0 16px 16px;
+    padding: 12px 14px;
+    background: var(--red-violet-pale);
+    border-radius: 10px;
+    border-left: 3px solid var(--red-violet);
+    font-size: 12px;
+    color: var(--gray-800);
+    line-height: 1.5;
+  }
+
+  .notice strong { color: var(--red-violet); }
+
+  .notice.warn {
+    background: var(--olive-pale);
+    border-left-color: var(--olive);
+  }
+  .notice.warn strong { color: #6b7a52; }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-ornament"></div>
+  <div class="hero-tag">Cotización · Marzo 2027</div>
+  <h1 class="hero-title">Itinerario<br><em>Japón</em> 2027</h1>
+  <div class="hero-dates">
+    <span>Tokio · Kioto · Osaka</span>
+    <div class="dot"></div>
+    <span>8 – 22 Marzo</span>
+  </div>
+  <div class="hero-scroll">desliza para explorar</div>
+</section>
+
+<!-- ══ NAV ═══════════════════════════════ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <button class="nav-btn active" onclick="show('itinerario', this)">Itinerario</button>
+    <button class="nav-btn" onclick="show('vuelos', this)">Vuelos</button>
+    <button class="nav-btn" onclick="show('hoteles', this)">Hoteles</button>
+    <button class="nav-btn" onclick="show('costos', this)">Costos</button>
+  </div>
+</nav>
+
+<!-- ══ ITINERARIO ════════════════════════ -->
+<section id="itinerario" class="section active">
+
+  <div class="section-header">
+    <div class="section-label">Día a día</div>
+    <div class="section-title">15 días<br>por Japón</div>
+    <p class="section-sub">6 noches en Tokio, 4 en Kioto/Kanazawa y 4 en Osaka. Actividades marcadas como 🆓 Gratis o 💴 Con costo · Pendiente confirmar precio.</p>
+  </div>
+
+  <div class="overview-strip">
+    <div class="overview-cell">
+      <div class="val">15</div>
+      <div class="lbl">Días</div>
+    </div>
+    <div class="overview-cell">
+      <div class="val">3</div>
+      <div class="lbl">Ciudades</div>
+    </div>
+    <div class="overview-cell">
+      <div class="val">3</div>
+      <div class="lbl">Hoteles</div>
+    </div>
+  </div>
+
+  <div class="notice">
+    <strong>Nota:</strong> Traslados entre ciudades en Shinkansen (tren bala): Tokio → Kioto (14 mar), Kioto → Osaka (18 mar), Osaka → Tokio (22 mar). Costo de estos traslados: PENDIENTE.
+  </div>
+
+  <div class="timeline">
+
+    <div class="city-divider"><div class="line"></div><div class="label">🗼 Tokio · Shinjuku</div><div class="line"></div></div>
+
+    <!-- DÍA 1 -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-num"><div class="num">08</div><div class="mon">Mar</div></div>
+        <div class="day-info">
+          <div class="day-label">Lunes · Día 1</div>
+          <div class="day-title">Llegada a Tokio</div>
+          <div class="day-subtitle">Check-in, descanso y paseo por Shinjuku</div>
+        </div>
+      </div>
+      <div class="day-body">
+        <ul class="act-list">
+          <li class="act-item">
+            <div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg></div>
+            <div><div class="act-name">Llegada al aeropuerto de Tokio</div><div class="act-note">Traslado al hotel en Shinjuku</div></div>
+          </li>
+          <li class="act-item">
+            <div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 1 8 8c0 5.4-8 14-8 14S4 15.4 4 10a8 8 0 0 1 8-8z"/></svg></div>
+            <div><div class="act-name">Check-in · Sotetsu Fresa Inn Ginza Nanachome</div><div class="tag-free">🆓 Incluido en hospedaje</div></div>
+          </li>
+          <li class="act-item">
+            <div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <div><div class="act-name">Paseo por Shinjuku</div><div class="act-note">Descanso del vuelo, cena por cuenta propia</div><div class="tag-free">🆓 Gratis</div></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DÍA 2 -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-num"><div class="num">09</div><div class="mon">Mar</div></div>
+        <div class="day-info">
+          <div class="day-label">Martes · Día 2</div>
+          <div class="day-title">Shibuya y Harajuku</div>
+          <div class="day-subtitle">Hachikō, Shibuya Sky, Meiji Jingu y Omotesando</div>
+        </div>
+      </div>
+      <div class="day-body">
+        <ul class="act-list">
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <div><div class="act-name">Estatua de Hachikō y cruce de Shibuya</div><div class="tag-free">🆓 Gratis</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg></div>
+            <div><div class="act-name">Shibuya Sky</div><div class="act-note">Mirador panorámico</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <div><div class="act-name">Harajuku y Takeshita-dori</div><div class="tag-free">🆓 Gratis</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <div><div class="act-name">Santuario Meiji Jingu</div><div class="act-note">Entrada al santuario sin costo; jardín interior con tarifa</div><div class="tag-free">🆓 Gratis</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <div><div class="act-name">Omotesando</div><div class="act-note">Paseo y compras</div><div class="tag-free">🆓 Gratis</div></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DÍA 3 -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-num"><div class="num">10</div><div class="mon">Mar</div></div>
+        <div class="day-info">
+          <div class="day-label">Miércoles · Día 3</div>
+          <div class="day-title">Asakusa y Akihabara</div>
+          <div class="day-subtitle">Sensō-ji, Nakamise, Tokyo Skytree</div>
+        </div>
+      </div>
+      <div class="day-body">
+        <ul class="act-list">
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <div><div class="act-name">Templo Sensō-ji y calle Nakamise</div><div class="tag-free">🆓 Gratis</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg></div>
+            <div><div class="act-name">Tokyo Skytree</div><div class="act-note">Mirador</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <div><div class="act-name">Akihabara</div><div class="act-note">Paseo, tiendas de electrónica y anime</div><div class="tag-free">🆓 Gratis (compras opcionales)</div></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DÍA 4 -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-num"><div class="num">11</div><div class="mon">Mar</div></div>
+        <div class="day-info">
+          <div class="day-label">Jueves · Día 4</div>
+          <div class="day-title">Tokyo DisneySea</div>
+          <div class="day-subtitle">Día completo en el parque</div>
+        </div>
+      </div>
+      <div class="day-body">
+        <ul class="act-list">
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><circle cx="12" cy="12" r="9"/></svg></div>
+            <div><div class="act-name">Tokyo DisneySea · día completo</div><div class="act-note">Boleto de entrada al parque</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DÍA 5 -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-num"><div class="num">12</div><div class="mon">Mar</div></div>
+        <div class="day-info">
+          <div class="day-label">Viernes · Día 5</div>
+          <div class="day-title">TeamLab y Ginza</div>
+          <div class="day-subtitle">Toyosu, Ginza y Tokyo Station · noche en Kabukichō</div>
+        </div>
+      </div>
+      <div class="day-body">
+        <ul class="act-list">
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg></div>
+            <div><div class="act-name">TeamLab Planets</div><div class="act-note">Museo inmersivo</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <div><div class="act-name">Mercado de Toyosu</div><div class="tag-free">🆓 Gratis (compras opcionales)</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <div><div class="act-name">Ginza</div><div class="act-note">Paseo y compras</div><div class="tag-free">🆓 Gratis</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <div><div class="act-name">Tokyo Station</div><div class="tag-free">🆓 Gratis</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <div><div class="act-name">Noche en Kabukichō / Shinjuku</div><div class="tag-free">🆓 Gratis (paseo)</div></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DÍA 6 -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-num"><div class="num">13</div><div class="mon">Mar</div></div>
+        <div class="day-info">
+          <div class="day-label">Sábado · Día 6</div>
+          <div class="day-title">Monte Fuji y Kawaguchiko</div>
+          <div class="day-subtitle">Excursión de día completo. Regreso a Tokio</div>
+        </div>
+      </div>
+      <div class="day-body">
+        <ul class="act-list">
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg></div>
+            <div><div class="act-name">Excursión Monte Fuji + Lago Kawaguchiko</div><div class="act-note">Tour de día completo, incluye transporte</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="city-divider"><div class="line"></div><div class="label">⛩️ Kioto · Gion / Higashiyama</div><div class="line"></div></div>
+
+    <!-- DÍA 7 -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-num"><div class="num">14</div><div class="mon">Mar</div></div>
+        <div class="day-info">
+          <div class="day-label">Domingo · Día 7</div>
+          <div class="day-title">Tokio → Kioto</div>
+          <div class="day-subtitle">Shinkansen, Fushimi Inari, Gion y Pontocho</div>
+        </div>
+      </div>
+      <div class="day-body">
+        <ul class="act-list">
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div>
+            <div><div class="act-name">Traslado en Shinkansen Tokio → Kioto</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <div><div class="act-name">Santuario Fushimi Inari</div><div class="act-note">Miles de torii</div><div class="tag-free">🆓 Gratis</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <div><div class="act-name">Gion y Pontocho</div><div class="act-note">Barrio de geishas, paseo nocturno</div><div class="tag-free">🆓 Gratis</div></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DÍA 8 -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-num"><div class="num">15</div><div class="mon">Mar</div></div>
+        <div class="day-info">
+          <div class="day-label">Lunes · Día 8</div>
+          <div class="day-title">Arashiyama y Kinkaku-ji</div>
+          <div class="day-subtitle">Bosque de bambú y Nishiki Market</div>
+        </div>
+      </div>
+      <div class="day-body">
+        <ul class="act-list">
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <div><div class="act-name">Bosque de Bambú de Arashiyama</div><div class="tag-free">🆓 Gratis</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg></div>
+            <div><div class="act-name">Kinkaku-ji (Pabellón Dorado)</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <div><div class="act-name">Nishiki Market</div><div class="act-note">Compras opcionales</div><div class="tag-free">🆓 Gratis</div></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DÍA 9 -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-num"><div class="num">16</div><div class="mon">Mar</div></div>
+        <div class="day-info">
+          <div class="day-label">Martes · Día 9</div>
+          <div class="day-title">Nara</div>
+          <div class="day-subtitle">Parque de Nara, Tōdai-ji y Naramachi. Regreso a Kioto</div>
+        </div>
+      </div>
+      <div class="day-body">
+        <ul class="act-list">
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <div><div class="act-name">Parque de Nara (ciervos)</div><div class="tag-free">🆓 Gratis</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg></div>
+            <div><div class="act-name">Templo Tōdai-ji</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <div><div class="act-name">Santuario Kasuga Taisha</div><div class="act-note">Entrada al santuario sin costo</div><div class="tag-free">🆓 Gratis</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <div><div class="act-name">Naramachi</div><div class="act-note">Barrio histórico, paseo</div><div class="tag-free">🆓 Gratis</div></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DÍA 10 -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-num"><div class="num">17</div><div class="mon">Mar</div></div>
+        <div class="day-info">
+          <div class="day-label">Miércoles · Día 10</div>
+          <div class="day-title">Kiyomizu-dera</div>
+          <div class="day-subtitle">Higashiyama, Yasaka Shrine y ceremonia del té</div>
+        </div>
+      </div>
+      <div class="day-body">
+        <ul class="act-list">
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg></div>
+            <div><div class="act-name">Templo Kiyomizu-dera</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <div><div class="act-name">Higashiyama</div><div class="act-note">Callejones históricos, paseo</div><div class="tag-free">🆓 Gratis</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <div><div class="act-name">Santuario Yasaka</div><div class="tag-free">🆓 Gratis</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg></div>
+            <div><div class="act-name">Ceremonia del té</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="city-divider"><div class="line"></div><div class="label">🏙️ Osaka · Namba / Dotonbori</div><div class="line"></div></div>
+
+    <!-- DÍA 11 -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-num"><div class="num">18</div><div class="mon">Mar</div></div>
+        <div class="day-info">
+          <div class="day-label">Jueves · Día 11</div>
+          <div class="day-title">Kioto → Osaka</div>
+          <div class="day-subtitle">Kuromon Market, Shinsaibashi y Dotonbori</div>
+        </div>
+      </div>
+      <div class="day-body">
+        <ul class="act-list">
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div>
+            <div><div class="act-name">Traslado en Shinkansen Kioto → Osaka</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <div><div class="act-name">Mercado Kuromon</div><div class="act-note">Comida callejera por cuenta propia</div><div class="tag-free">🆓 Gratis (entrada)</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <div><div class="act-name">Shinsaibashi y Dotonbori</div><div class="act-note">Paseo, compras y cena</div><div class="tag-free">🆓 Gratis</div></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DÍA 12 -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-num"><div class="num">19</div><div class="mon">Mar</div></div>
+        <div class="day-info">
+          <div class="day-label">Viernes · Día 12</div>
+          <div class="day-title">Universal Studios Japan</div>
+          <div class="day-subtitle">Día completo en el parque</div>
+        </div>
+      </div>
+      <div class="day-body">
+        <ul class="act-list">
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><circle cx="12" cy="12" r="9"/></svg></div>
+            <div><div class="act-name">Universal Studios Japan · día completo</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DÍA 13 -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-num"><div class="num">20</div><div class="mon">Mar</div></div>
+        <div class="day-info">
+          <div class="day-label">Sábado · Día 13</div>
+          <div class="day-title">Castillo de Osaka</div>
+          <div class="day-subtitle">Umeda Sky Building, compras y Dotonbori</div>
+        </div>
+      </div>
+      <div class="day-body">
+        <ul class="act-list">
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg></div>
+            <div><div class="act-name">Castillo de Osaka</div><div class="act-note">Jardines exteriores gratis; interior/museo con costo</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg></div>
+            <div><div class="act-name">Umeda Sky Building</div><div class="act-note">Mirador</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <div><div class="act-name">Compras y Dotonbori</div><div class="tag-free">🆓 Gratis (compras opcionales)</div></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DÍA 14 -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-num"><div class="num">21</div><div class="mon">Mar</div></div>
+        <div class="day-info">
+          <div class="day-label">Domingo · Día 14</div>
+          <div class="day-title">Hiroshima y Miyajima</div>
+          <div class="day-subtitle">Excursión de día completo. Regreso a Osaka</div>
+        </div>
+      </div>
+      <div class="day-body">
+        <ul class="act-list">
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <div><div class="act-name">Parque Memorial de la Paz de Hiroshima</div><div class="act-note">Parque gratis; museo con costo</div><div class="tag-free">🆓 Gratis (parque)</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg></div>
+            <div><div class="act-name">Isla de Miyajima y Santuario Itsukushima</div><div class="act-note">Ferry + entrada al santuario</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DÍA 15 -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-num"><div class="num">22</div><div class="mon">Mar</div></div>
+        <div class="day-info">
+          <div class="day-label">Lunes · Día 15</div>
+          <div class="day-title">Osaka → Tokio → Regreso</div>
+          <div class="day-subtitle">Últimas compras y traslado al aeropuerto</div>
+        </div>
+      </div>
+      <div class="day-body">
+        <ul class="act-list">
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div>
+            <div><div class="act-name">Traslado en Shinkansen Osaka → Tokio</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <div><div class="act-name">Últimas compras / paseo</div><div class="tag-free">🆓 Gratis</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg></div>
+            <div><div class="act-name">Traslado al aeropuerto y vuelo de regreso</div><div class="act-note">Salida de Tokio por la noche (ver pestaña Vuelos)</div></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="notice">
+    <strong>Nota:</strong> Actividades propuestas y flexibles — pueden ajustarse según el ritmo y gustos del viaje. Los precios de entradas marcados como "Pendiente" se confirmarán antes de cerrar la cotización.
+  </div>
+</section>
+
+<!-- ══ VUELOS ════════════════════════════ -->
+<section id="vuelos" class="section">
+  <div class="section-header">
+    <div class="section-label">3 opciones de origen</div>
+    <div class="section-title">Vuelos<br>por grupo</div>
+    <p class="section-sub">Cada grupo tiene su propio costo por persona según su ciudad de origen. Pago de vuelos en una sola exhibición.</p>
+  </div>
+
+  <div class="costs-wrap" style="padding-top:20px;">
+
+    <div class="costs-group">
+      <div class="costs-group-title">Grupo 1 · Desde Arizona (vía Los Ángeles)</div>
+      <div class="cost-row">
+        <div class="cost-name">Phoenix → Los Ángeles<span class="cost-note">7 de marzo · Con cambios, no reembolsable, asiento seleccionado + 1 maleta documentada</span></div>
+        <div class="cost-pp">400 USD</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-name">Los Ángeles → Tokio<span class="cost-note">Delta Airlines · Llegada 8 de marzo</span></div>
+        <div class="cost-pp">1,700 USD</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-name">Tokio → Los Ángeles → Phoenix<span class="cost-note">Regreso: sale 22 de marzo, llega el mismo día</span></div>
+        <div class="cost-pp">Incluido</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-name"><strong>Total por persona</strong></div>
+        <div class="cost-pp"><strong>2,100 USD</strong></div>
+      </div>
+    </div>
+
+    <div class="costs-group">
+      <div class="costs-group-title">Grupo 2 · Desde CDMX (vía Los Ángeles)</div>
+      <div class="cost-row">
+        <div class="cost-name">CDMX → Los Ángeles<span class="cost-note">7 de marzo · Con cambios, no reembolsable, asiento seleccionado + 1 maleta documentada</span></div>
+        <div class="cost-pp">400 USD</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-name">Los Ángeles → Tokio<span class="cost-note">Delta Airlines · Llegada 8 de marzo</span></div>
+        <div class="cost-pp">1,700 USD</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-name">Tokio → Los Ángeles → CDMX<span class="cost-note">Regreso: sale 22 de marzo, llega el mismo día</span></div>
+        <div class="cost-pp">Incluido</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-name"><strong>Total por persona</strong></div>
+        <div class="cost-pp"><strong>2,100 USD</strong></div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-name"><span class="cost-note">⚠️ Pendiente: confirmar si el primer tramo (CDMX–LA) es 400 USD o 400 MXN, ya que el documento original mezcla ambas monedas.</span></div>
+      </div>
+    </div>
+
+    <div class="costs-group">
+      <div class="costs-group-title">Grupo 3 · V2 Directo desde CDMX (Aeroméxico)</div>
+      <div class="cost-row">
+        <div class="cost-name">CDMX → Tokio directo<span class="cost-note">Aeroméxico · Sale 7 de marzo por la mañana, llega 8 de marzo</span></div>
+        <div class="cost-pp">2,200 USD</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-name">Tokio → CDMX directo<span class="cost-note">Regreso: sale 22 de marzo por la noche, llega el mismo día</span></div>
+        <div class="cost-pp">Incluido</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-name"><strong>Total por persona</strong></div>
+        <div class="cost-pp"><strong>2,200 USD</strong></div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-name"><span class="cost-note">Sin escala en Los Ángeles — vuelo directo en ambos tramos</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="notice">
+    <strong>Condiciones:</strong> Todos los boletos son con cambios permitidos, no reembolsables, incluyen selección de asiento y 1 maleta documentada. Pago en una sola exhibición.
+  </div>
+</section>
+
+<!-- ══ HOTELES ═══════════════════════════ -->
+<section id="hoteles" class="section">
+  <div class="section-header">
+    <div class="section-label">3 ciudades</div>
+    <div class="section-title">Dónde<br>dormir</div>
+    <p class="section-sub">3 hoteles confirmados con tarifas para habitación de 5 o de 4 personas. Recuerda: una misma habitación puede combinar viajeros de distinto origen de vuelo.</p>
+  </div>
+
+  <div class="hotel-grid">
+
+    <div style="padding: 0 0 4px; margin-bottom: -4px;">
+      <div style="font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--olive);padding:0 2px 6px;">📍 Tokio · 8 — 14 Mar · 6 noches</div>
+    </div>
+    <div class="hotel-card recommended">
+      <div class="hotel-badge">✦ Propuesta</div>
+      <div class="hotel-body">
+        <div class="hotel-name">Sotetsu Fresa Inn Ginza Nanachome</div>
+        <div class="hotel-perks">
+          <span class="perk-tag">Desayuno incluido</span>
+          <span class="perk-tag">Paga hasta 18 MSI</span>
+        </div>
+        <div class="room-row">
+          <div class="room-label"><strong>Habitación 5 personas</strong><br>6 noches, desayuno incluido</div>
+          <div class="room-price"><div class="tot">2,900 USD</div><div class="pp">580 USD c/u</div></div>
+        </div>
+        <div class="room-row">
+          <div class="room-label"><strong>Habitación 4 personas</strong><br>6 noches, desayuno incluido</div>
+          <div class="room-price"><div class="tot">2,700 USD</div><div class="pp">675 USD c/u</div></div>
+        </div>
+        <a class="hotel-link" href="https://en.sotetsu-hotels.com/fresa-inn/ginza7/" target="_blank">Ver sitio oficial del hotel →</a>
+      </div>
+    </div>
+
+    <div style="padding: 12px 0 4px; margin-bottom: -4px;">
+      <div style="font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--olive);padding:0 2px 6px;">📍 Kioto · 14 — 18 Mar · 4 noches</div>
+    </div>
+    <div class="hotel-card recommended">
+      <div class="hotel-badge">✦ Propuesta</div>
+      <div class="hotel-body">
+        <div class="hotel-name">The Kanazawa Sainoniwa Hotel</div>
+        <div class="hotel-perks">
+          <span class="perk-tag">Desayuno incluido</span>
+          <span class="perk-tag">Paga hasta 18 MSI</span>
+        </div>
+        <div class="room-row">
+          <div class="room-label"><strong>Habitación 5 personas</strong><br>4 noches, desayuno incluido</div>
+          <div class="room-price"><div class="tot">2,200 USD</div><div class="pp">440 USD c/u</div></div>
+        </div>
+        <div class="room-row">
+          <div class="room-label"><strong>Habitación 4 personas</strong><br>4 noches, desayuno incluido</div>
+          <div class="room-price"><div class="tot">2,200 USD</div><div class="pp">550 USD c/u</div></div>
+        </div>
+        <a class="hotel-link" href="https://www.expedia.com/Kanazawa-Hotels-Kanazawa-Sainoniwa-Hotel.h9989557.Hotel-Information" target="_blank">Ver disponibilidad →</a>
+      </div>
+    </div>
+
+    <div style="padding: 12px 0 4px; margin-bottom: -4px;">
+      <div style="font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--olive);padding:0 2px 6px;">📍 Osaka · 18 — 22 Mar · 4 noches</div>
+    </div>
+    <div class="hotel-card recommended">
+      <div class="hotel-badge">✦ Propuesta</div>
+      <div class="hotel-body">
+        <div class="hotel-name">KOKO HOTEL Osaka Namba Sennichimae</div>
+        <div class="hotel-perks">
+          <span class="perk-tag">Desayuno incluido</span>
+          <span class="perk-tag">18 MSI</span>
+        </div>
+        <div class="room-row">
+          <div class="room-label"><strong>Habitación 5 personas</strong><br>4 noches, desayuno incluido</div>
+          <div class="room-price"><div class="tot">2,100 USD</div><div class="pp">420 USD c/u</div></div>
+        </div>
+        <div class="room-row">
+          <div class="room-label"><strong>Habitación 4 personas</strong><br>4 noches, desayuno incluido</div>
+          <div class="room-price"><div class="tot">1,900 USD</div><div class="pp">475 USD c/u</div></div>
+        </div>
+        <a class="hotel-link" href="https://koko-hotels.com/osaka_sennichimae_lang/en_on" target="_blank">Ver sitio oficial del hotel →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ COSTOS ════════════════════════════ -->
+<section id="costos" class="section">
+  <div class="section-header">
+    <div class="section-label">Vuelos + hospedaje</div>
+    <div class="section-title">Costos<br>por persona</div>
+    <p class="section-sub">Desglose de vuelo (según origen) y hospedaje (según tamaño de habitación). No incluye entradas, tours ni traslados en Shinkansen — ver notas "Pendiente" en Itinerario.</p>
+  </div>
+
+  <div class="costs-wrap" style="padding-top:20px;">
+
+    <div class="costs-group">
+      <div class="costs-group-title">Hospedaje por persona (3 hoteles)</div>
+      <div class="cost-row">
+        <div class="cost-name">Si viaja en habitación de <strong>5 personas</strong><span class="cost-note">Tokio 580 + Kioto/Kanazawa 440 + Osaka 420 USD</span></div>
+        <div class="cost-pp">1,440 USD</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-name">Si viaja en habitación de <strong>4 personas</strong><span class="cost-note">Tokio 675 + Kioto/Kanazawa 550 + Osaka 475 USD</span></div>
+        <div class="cost-pp">1,700 USD</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-name"><span class="cost-note">Una misma persona puede estar en habitación de 5 en un hotel y de 4 en otro; ajustar según la asignación real de cada viajero.</span></div>
+      </div>
+    </div>
+
+    <div class="costs-group">
+      <div class="costs-group-title">Total estimado por persona (vuelo + hospedaje)</div>
+      <div class="cost-row">
+        <div class="cost-name">Arizona · hab. 5 personas<span class="cost-note">2,100 + 1,440 USD</span></div>
+        <div class="cost-pp">3,540 USD</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-name">Arizona · hab. 4 personas<span class="cost-note">2,100 + 1,700 USD</span></div>
+        <div class="cost-pp">3,800 USD</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-name">CDMX vía LA · hab. 5 personas<span class="cost-note">2,100 + 1,440 USD · moneda del primer tramo pendiente</span></div>
+        <div class="cost-pp">3,540 USD</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-name">CDMX vía LA · hab. 4 personas<span class="cost-note">2,100 + 1,700 USD · moneda del primer tramo pendiente</span></div>
+        <div class="cost-pp">3,800 USD</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-name">CDMX directo (V2) · hab. 5 personas<span class="cost-note">2,200 + 1,440 USD</span></div>
+        <div class="cost-pp">3,640 USD</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-name">CDMX directo (V2) · hab. 4 personas<span class="cost-note">2,200 + 1,700 USD</span></div>
+        <div class="cost-pp">3,900 USD</div>
+      </div>
+    </div>
+
+    <div class="costs-group">
+      <div class="costs-group-title">Pendientes generales</div>
+      <div class="cost-row"><div class="cost-name">Traslados en Shinkansen (3 tramos)</div><div class="cost-pp">Pendiente</div></div>
+      <div class="cost-row"><div class="cost-name">Entradas y tours marcados 💴 en el itinerario</div><div class="cost-pp">Pendiente</div></div>
+    </div>
+
+  </div>
+
+  <div class="notice">
+    <strong>Nota:</strong> Estos totales son estimados a partir de la información proporcionada. El costo final por persona depende de la asignación exacta de habitaciones y de confirmar los rubros marcados como "Pendiente".
+  </div>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════ -->
+<footer class="footer">
+  <strong>Itinerario Japón · Tokio, Kioto y Osaka</strong>
+  <span>8 – 22 Marzo 2027 · Cotización preliminar</span>
+  <div class="footer-vv"><em>Venimos a Vivir</em></div>
+</footer>
+
+<script>
+  function show(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    const section = document.getElementById(id);
+    if (section) {
+      section.classList.add('active');
+      btn.classList.add('active');
+      window.scrollTo({ top: document.querySelector('.nav').offsetTop, behavior: 'smooth' });
+    }
+  }
+</script>
+
+</body>
+</html>
