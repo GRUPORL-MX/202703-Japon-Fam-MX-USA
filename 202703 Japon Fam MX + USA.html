@@ -664,6 +664,38 @@
     border-left-color: var(--olive);
   }
   .notice.warn strong { color: #6b7a52; }
+
+  .tyc-wrap { padding: 20px 16px; }
+
+  .tyc-item {
+    margin-bottom: 14px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    background: var(--gray-50);
+    border-left: 3px solid var(--red-violet);
+  }
+
+  .tyc-num {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--red-violet);
+    margin-bottom: 4px;
+  }
+
+  .tyc-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+
+  .tyc-text {
+    font-size: 12px;
+    color: var(--gray-600);
+    line-height: 1.55;
+  }
 </style>
 </head>
 <body>
@@ -672,23 +704,27 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-ornament"></div>
-  <div class="hero-tag">Cotización · Marzo 2027</div>
-  <h1 class="hero-title">Itinerario<br><em>Japón</em> 2027</h1>
+  <button id="lang-toggle" onclick="toggleLang()" style="position:relative;margin:0 24px 14px;align-self:flex-start;display:flex;background:rgba(255,255,255,0.5);border:1px solid rgba(181,50,78,0.3);border-radius:20px;overflow:hidden;font-family:'DM Sans',sans-serif;">
+    <span id="lang-es" style="padding:5px 12px;font-size:10px;font-weight:500;letter-spacing:0.1em;background:var(--red-violet);color:#fff;">ES</span><span id="lang-en" style="padding:5px 12px;font-size:10px;font-weight:500;letter-spacing:0.1em;color:var(--gray-600);">EN</span>
+  </button>
+  <div class="hero-tag" data-i18n="Cotización · Marzo 2027">Cotización · Marzo 2027</div>
+  <h1 class="hero-title" data-i18n-html="hero-title">Itinerario<br><em>Japón</em> 2027</h1>
   <div class="hero-dates">
-    <span>Tokio · Kioto · Osaka</span>
+    <span data-i18n="Tokio · Kioto · Osaka">Tokio · Kioto · Osaka</span>
     <div class="dot"></div>
-    <span>8 – 22 Marzo</span>
+    <span data-i18n="7 – 22 Marzo">7 – 22 Marzo</span>
   </div>
-  <div class="hero-scroll">desliza para explorar</div>
+  <div class="hero-scroll" data-i18n="desliza para explorar">desliza para explorar</div>
 </section>
 
 <!-- ══ NAV ═══════════════════════════════ -->
 <nav class="nav">
   <div class="nav-inner">
-    <button class="nav-btn active" onclick="show('itinerario', this)">Itinerario</button>
-    <button class="nav-btn" onclick="show('vuelos', this)">Vuelos</button>
-    <button class="nav-btn" onclick="show('hoteles', this)">Hoteles</button>
-    <button class="nav-btn" onclick="show('costos', this)">Costos</button>
+    <button class="nav-btn active" onclick="show('itinerario', this)" data-i18n="Itinerario">Itinerario</button>
+    <button class="nav-btn" onclick="show('vuelos', this)" data-i18n="Vuelos">Vuelos</button>
+    <button class="nav-btn" onclick="show('hoteles', this)" data-i18n="Hoteles">Hoteles</button>
+    <button class="nav-btn" onclick="show('costos', this)" data-i18n="Costos">Costos</button>
+    <button class="nav-btn" onclick="show('tyc', this)" data-i18n="T&amp;C">T&amp;C</button>
   </div>
 </nav>
 
@@ -696,57 +732,79 @@
 <section id="itinerario" class="section active">
 
   <div class="section-header">
-    <div class="section-label">Día a día</div>
-    <div class="section-title">15 días<br>por Japón</div>
-    <p class="section-sub">6 noches en Tokio, 4 en Kioto/Kanazawa y 4 en Osaka. Actividades marcadas como 🆓 Gratis o 💴 Con costo · Pendiente confirmar precio.</p>
+    <div class="section-label" data-i18n="Día a día">Día a día</div>
+    <div class="section-title" data-i18n-html="title-itinerario">15 días<br>por Japón</div>
+    <p class="section-sub" data-i18n="6 noches en Tokio, 4 en Kioto/Kanazawa y 4 en Osaka. Actividades marcadas como 🆓 Gratis o 💴 Con costo · Pendiente confirmar precio.">6 noches en Tokio, 4 en Kioto/Kanazawa y 4 en Osaka. Actividades marcadas como 🆓 Gratis o 💴 Con costo · Pendiente confirmar precio.</p>
   </div>
 
   <div class="overview-strip">
     <div class="overview-cell">
       <div class="val">15</div>
-      <div class="lbl">Días</div>
+      <div class="lbl" data-i18n="Días">Días</div>
     </div>
     <div class="overview-cell">
       <div class="val">3</div>
-      <div class="lbl">Ciudades</div>
+      <div class="lbl" data-i18n="Ciudades">Ciudades</div>
     </div>
     <div class="overview-cell">
       <div class="val">3</div>
-      <div class="lbl">Hoteles</div>
+      <div class="lbl" data-i18n="Hoteles">Hoteles</div>
     </div>
   </div>
 
   <div class="notice">
-    <strong>Nota:</strong> Traslados entre ciudades en Shinkansen (tren bala): Tokio → Kioto (14 mar), Kioto → Osaka (18 mar), Osaka → Tokio (22 mar). Costo de estos traslados: PENDIENTE.
+    <strong data-i18n="Nota:">Nota:</strong> <span data-i18n="Todos los traslados entre ciudades son en tren (Shinkansen, tren bala): Tokio → Kioto (14 mar), Kioto → Osaka (18 mar), Osaka → Tokio (22 mar). Costo de estos traslados: PENDIENTE.">Todos los traslados entre ciudades son en tren (Shinkansen, tren bala): Tokio → Kioto (14 mar), Kioto → Osaka (18 mar), Osaka → Tokio (22 mar). Costo de estos traslados: PENDIENTE.</span>
   </div>
 
   <div class="timeline">
 
-    <div class="city-divider"><div class="line"></div><div class="label">🗼 Tokio · Shinjuku</div><div class="line"></div></div>
+    <div class="city-divider"><div class="line"></div><div class="label" data-i18n="✈️ Origen · Salida">✈️ Origen · Salida</div><div class="line"></div></div>
 
-    <!-- DÍA 1 -->
+    <!-- DÍA 0 -->
     <div class="day-card">
       <div class="day-header">
-        <div class="day-num"><div class="num">08</div><div class="mon">Mar</div></div>
+        <div class="day-num"><div class="num">07</div><div class="mon">Mar</div></div>
         <div class="day-info">
-          <div class="day-label">Lunes · Día 1</div>
-          <div class="day-title">Llegada a Tokio</div>
-          <div class="day-subtitle">Check-in, descanso y paseo por Shinjuku</div>
+          <div class="day-label" data-i18n="Domingo · Salida">Domingo · Salida</div>
+          <div class="day-title" data-i18n="Salida desde origen">Salida desde origen</div>
+          <div class="day-subtitle" data-i18n="Vuelos hacia Tokio, según grupo de origen">Vuelos hacia Tokio, según grupo de origen</div>
         </div>
       </div>
       <div class="day-body">
         <ul class="act-list">
           <li class="act-item">
             <div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg></div>
-            <div><div class="act-name">Llegada al aeropuerto de Tokio</div><div class="act-note">Traslado al hotel en Shinjuku</div></div>
+            <div><div class="act-name" data-i18n="Vuelo de salida desde origen">Vuelo de salida desde origen</div><div class="act-note" data-i18n="Grupo Arizona (Phoenix), Grupo CDMX vía Los Ángeles, o Grupo CDMX directo (Aeroméxico) — horarios y detalles en la pestaña Vuelos">Grupo Arizona (Phoenix), Grupo CDMX vía Los Ángeles, o Grupo CDMX directo (Aeroméxico) — horarios y detalles en la pestaña Vuelos</div></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="city-divider"><div class="line"></div><div class="label" data-i18n="🗼 Tokio · Shinjuku">🗼 Tokio · Shinjuku</div><div class="line"></div></div>
+
+    <!-- DÍA 1 -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-num"><div class="num">08</div><div class="mon">Mar</div></div>
+        <div class="day-info">
+          <div class="day-label" data-i18n="Lunes · Día 1">Lunes · Día 1</div>
+          <div class="day-title" data-i18n="Llegada a Tokio">Llegada a Tokio</div>
+          <div class="day-subtitle" data-i18n="Check-in, descanso y paseo por Shinjuku">Check-in, descanso y paseo por Shinjuku</div>
+        </div>
+      </div>
+      <div class="day-body">
+        <ul class="act-list">
+          <li class="act-item">
+            <div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg></div>
+            <div><div class="act-name" data-i18n="Llegada al aeropuerto de Tokio">Llegada al aeropuerto de Tokio</div><div class="act-note" data-i18n="Llegada al aeropuerto (Narita o Haneda, según vuelo) y traslado al hotel en Shinjuku.">Llegada al aeropuerto (Narita o Haneda, según vuelo) y traslado al hotel en Shinjuku.</div></div>
           </li>
           <li class="act-item">
             <div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 1 8 8c0 5.4-8 14-8 14S4 15.4 4 10a8 8 0 0 1 8-8z"/></svg></div>
-            <div><div class="act-name">Check-in · Sotetsu Fresa Inn Ginza Nanachome</div><div class="tag-free">🆓 Incluido en hospedaje</div></div>
+            <div><div class="act-name" data-i18n="Check-in · Sotetsu Fresa Inn Ginza Nanachome">Check-in · Sotetsu Fresa Inn Ginza Nanachome</div><div class="act-note" data-i18n="Registro de entrada al hotel y acomodo de equipaje.">Registro de entrada al hotel y acomodo de equipaje.</div></div>
           </li>
           <li class="act-item">
             <div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-            <div><div class="act-name">Paseo por Shinjuku</div><div class="act-note">Descanso del vuelo, cena por cuenta propia</div><div class="tag-free">🆓 Gratis</div></div>
+            <div><div class="act-name" data-i18n="Paseo por Shinjuku">Paseo por Shinjuku</div><div class="act-note" data-i18n="Recorrido por uno de los barrios más animados de Tokio, con luces de neón, restaurantes e izakayas.">Recorrido por uno de los barrios más animados de Tokio, con luces de neón, restaurantes e izakayas.</div><div class="tag-free" data-i18n="🆓 Gratis">🆓 Gratis</div></div>
           </li>
         </ul>
       </div>
@@ -757,23 +815,23 @@
       <div class="day-header">
         <div class="day-num"><div class="num">09</div><div class="mon">Mar</div></div>
         <div class="day-info">
-          <div class="day-label">Martes · Día 2</div>
-          <div class="day-title">Shibuya y Harajuku</div>
-          <div class="day-subtitle">Hachikō, Shibuya Sky, Meiji Jingu y Omotesando</div>
+          <div class="day-label" data-i18n="Martes · Día 2">Martes · Día 2</div>
+          <div class="day-title" data-i18n="Shibuya y Harajuku">Shibuya y Harajuku</div>
+          <div class="day-subtitle" data-i18n="Hachikō, Shibuya Sky, Meiji Jingu y Omotesando">Hachikō, Shibuya Sky, Meiji Jingu y Omotesando</div>
         </div>
       </div>
       <div class="day-body">
         <ul class="act-list">
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-            <div><div class="act-name">Estatua de Hachikō y cruce de Shibuya</div><div class="tag-free">🆓 Gratis</div></div></li>
+            <div><div class="act-name" data-i18n="Estatua de Hachikō y cruce de Shibuya">Estatua de Hachikō y cruce de Shibuya</div><div class="act-note" data-i18n="La famosa estatua del perro Hachikō y el cruce peatonal más transitado del mundo.">La famosa estatua del perro Hachikō y el cruce peatonal más transitado del mundo.</div><div class="tag-free" data-i18n="🆓 Gratis">🆓 Gratis</div></div></li>
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg></div>
-            <div><div class="act-name">Shibuya Sky</div><div class="act-note">Mirador panorámico</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+            <div><div class="act-name" data-i18n="Shibuya Sky">Shibuya Sky</div><div class="act-note" data-i18n="Mirador en la azotea con vistas de 360° de Tokio, ideal para ver el atardecer.">Mirador en la azotea con vistas de 360° de Tokio, ideal para ver el atardecer.</div><div class="tag-paid" data-i18n="💴 Con costo · Pendiente">💴 Con costo · Pendiente</div></div></li>
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-            <div><div class="act-name">Harajuku y Takeshita-dori</div><div class="tag-free">🆓 Gratis</div></div></li>
+            <div><div class="act-name" data-i18n="Harajuku y Takeshita-dori">Harajuku y Takeshita-dori</div><div class="act-note" data-i18n="Calle famosa por la moda juvenil, tiendas excéntricas y crepas japonesas.">Calle famosa por la moda juvenil, tiendas excéntricas y crepas japonesas.</div><div class="tag-free" data-i18n="🆓 Gratis">🆓 Gratis</div></div></li>
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-            <div><div class="act-name">Santuario Meiji Jingu</div><div class="act-note">Entrada al santuario sin costo; jardín interior con tarifa</div><div class="tag-free">🆓 Gratis</div></div></li>
+            <div><div class="act-name" data-i18n="Santuario Meiji Jingu">Santuario Meiji Jingu</div><div class="act-note" data-i18n="Santuario sintoísta rodeado de un bosque frondoso en pleno centro de Tokio; entrada sin costo, jardín interior con tarifa.">Santuario sintoísta rodeado de un bosque frondoso en pleno centro de Tokio; entrada sin costo, jardín interior con tarifa.</div><div class="tag-free" data-i18n="🆓 Gratis">🆓 Gratis</div></div></li>
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-            <div><div class="act-name">Omotesando</div><div class="act-note">Paseo y compras</div><div class="tag-free">🆓 Gratis</div></div></li>
+            <div><div class="act-name" data-i18n="Omotesando">Omotesando</div><div class="act-note" data-i18n="Avenida arbolada con boutiques de lujo y arquitectura moderna.">Avenida arbolada con boutiques de lujo y arquitectura moderna.</div><div class="tag-free" data-i18n="🆓 Gratis">🆓 Gratis</div></div></li>
         </ul>
       </div>
     </div>
@@ -783,19 +841,19 @@
       <div class="day-header">
         <div class="day-num"><div class="num">10</div><div class="mon">Mar</div></div>
         <div class="day-info">
-          <div class="day-label">Miércoles · Día 3</div>
-          <div class="day-title">Asakusa y Akihabara</div>
-          <div class="day-subtitle">Sensō-ji, Nakamise, Tokyo Skytree</div>
+          <div class="day-label" data-i18n="Miércoles · Día 3">Miércoles · Día 3</div>
+          <div class="day-title" data-i18n="Asakusa y Akihabara">Asakusa y Akihabara</div>
+          <div class="day-subtitle" data-i18n="Sensō-ji, Nakamise, Tokyo Skytree">Sensō-ji, Nakamise, Tokyo Skytree</div>
         </div>
       </div>
       <div class="day-body">
         <ul class="act-list">
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-            <div><div class="act-name">Templo Sensō-ji y calle Nakamise</div><div class="tag-free">🆓 Gratis</div></div></li>
+            <div><div class="act-name" data-i18n="Templo Sensō-ji y calle Nakamise">Templo Sensō-ji y calle Nakamise</div><div class="act-note" data-i18n="El templo budista más antiguo de Tokio, con la calle comercial Nakamise llena de puestos tradicionales.">El templo budista más antiguo de Tokio, con la calle comercial Nakamise llena de puestos tradicionales.</div><div class="tag-free" data-i18n="🆓 Gratis">🆓 Gratis</div></div></li>
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg></div>
-            <div><div class="act-name">Tokyo Skytree</div><div class="act-note">Mirador</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+            <div><div class="act-name" data-i18n="Tokyo Skytree">Tokyo Skytree</div><div class="act-note" data-i18n="Una de las torres más altas del mundo, con miradores y vistas de toda la ciudad.">Una de las torres más altas del mundo, con miradores y vistas de toda la ciudad.</div><div class="tag-paid" data-i18n="💴 Con costo · Pendiente">💴 Con costo · Pendiente</div></div></li>
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-            <div><div class="act-name">Akihabara</div><div class="act-note">Paseo, tiendas de electrónica y anime</div><div class="tag-free">🆓 Gratis (compras opcionales)</div></div></li>
+            <div><div class="act-name" data-i18n="Akihabara">Akihabara</div><div class="act-note" data-i18n="Barrio conocido por la cultura otaku: tiendas de electrónica, anime, manga y videojuegos.">Barrio conocido por la cultura otaku: tiendas de electrónica, anime, manga y videojuegos.</div><div class="tag-free" data-i18n="🆓 Gratis (compras opcionales)">🆓 Gratis (compras opcionales)</div></div></li>
         </ul>
       </div>
     </div>
@@ -805,15 +863,15 @@
       <div class="day-header">
         <div class="day-num"><div class="num">11</div><div class="mon">Mar</div></div>
         <div class="day-info">
-          <div class="day-label">Jueves · Día 4</div>
-          <div class="day-title">Tokyo DisneySea</div>
-          <div class="day-subtitle">Día completo en el parque</div>
+          <div class="day-label" data-i18n="Jueves · Día 4">Jueves · Día 4</div>
+          <div class="day-title" data-i18n="Tokyo DisneySea">Tokyo DisneySea</div>
+          <div class="day-subtitle" data-i18n="Día completo en el parque">Día completo en el parque</div>
         </div>
       </div>
       <div class="day-body">
         <ul class="act-list">
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><circle cx="12" cy="12" r="9"/></svg></div>
-            <div><div class="act-name">Tokyo DisneySea · día completo</div><div class="act-note">Boleto de entrada al parque</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+            <div><div class="act-name" data-i18n="Tokyo DisneySea · día completo">Tokyo DisneySea · día completo</div><div class="act-note" data-i18n="Parque temático inspirado en el mar y la aventura, exclusivo de Tokio.">Parque temático inspirado en el mar y la aventura, exclusivo de Tokio.</div><div class="tag-paid" data-i18n="💴 Con costo · Pendiente">💴 Con costo · Pendiente</div></div></li>
         </ul>
       </div>
     </div>
@@ -823,23 +881,23 @@
       <div class="day-header">
         <div class="day-num"><div class="num">12</div><div class="mon">Mar</div></div>
         <div class="day-info">
-          <div class="day-label">Viernes · Día 5</div>
-          <div class="day-title">TeamLab y Ginza</div>
-          <div class="day-subtitle">Toyosu, Ginza y Tokyo Station · noche en Kabukichō</div>
+          <div class="day-label" data-i18n="Viernes · Día 5">Viernes · Día 5</div>
+          <div class="day-title" data-i18n="TeamLab y Ginza">TeamLab y Ginza</div>
+          <div class="day-subtitle" data-i18n="Toyosu, Ginza y Tokyo Station · noche en Kabukichō">Toyosu, Ginza y Tokyo Station · noche en Kabukichō</div>
         </div>
       </div>
       <div class="day-body">
         <ul class="act-list">
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg></div>
-            <div><div class="act-name">TeamLab Planets</div><div class="act-note">Museo inmersivo</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+            <div><div class="act-name" data-i18n="TeamLab Planets">TeamLab Planets</div><div class="act-note" data-i18n="Museo de arte digital inmersivo con instalaciones interactivas de luz y agua.">Museo de arte digital inmersivo con instalaciones interactivas de luz y agua.</div><div class="tag-paid" data-i18n="💴 Con costo · Pendiente">💴 Con costo · Pendiente</div></div></li>
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-            <div><div class="act-name">Mercado de Toyosu</div><div class="tag-free">🆓 Gratis (compras opcionales)</div></div></li>
+            <div><div class="act-name" data-i18n="Mercado de Toyosu">Mercado de Toyosu</div><div class="act-note" data-i18n="Mercado mayorista de pescado que sustituyó al histórico Tsukiji; subastas de atún y puestos de sushi.">Mercado mayorista de pescado que sustituyó al histórico Tsukiji; subastas de atún y puestos de sushi.</div><div class="tag-free" data-i18n="🆓 Gratis (compras opcionales)">🆓 Gratis (compras opcionales)</div></div></li>
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-            <div><div class="act-name">Ginza</div><div class="act-note">Paseo y compras</div><div class="tag-free">🆓 Gratis</div></div></li>
+            <div><div class="act-name" data-i18n="Ginza">Ginza</div><div class="act-note" data-i18n="Distrito elegante de compras con tiendas departamentales y boutiques de lujo.">Distrito elegante de compras con tiendas departamentales y boutiques de lujo.</div><div class="tag-free" data-i18n="🆓 Gratis">🆓 Gratis</div></div></li>
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-            <div><div class="act-name">Tokyo Station</div><div class="tag-free">🆓 Gratis</div></div></li>
+            <div><div class="act-name" data-i18n="Tokyo Station">Tokyo Station</div><div class="act-note" data-i18n="Estación central de trenes con arquitectura histórica de ladrillo rojo.">Estación central de trenes con arquitectura histórica de ladrillo rojo.</div><div class="tag-free" data-i18n="🆓 Gratis">🆓 Gratis</div></div></li>
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-            <div><div class="act-name">Noche en Kabukichō / Shinjuku</div><div class="tag-free">🆓 Gratis (paseo)</div></div></li>
+            <div><div class="act-name" data-i18n="Noche en Kabukichō / Shinjuku">Noche en Kabukichō / Shinjuku</div><div class="act-note" data-i18n="Zona de entretenimiento nocturno con restaurantes, bares e izakayas.">Zona de entretenimiento nocturno con restaurantes, bares e izakayas.</div><div class="tag-free" data-i18n="🆓 Gratis (paseo)">🆓 Gratis (paseo)</div></div></li>
         </ul>
       </div>
     </div>
@@ -849,39 +907,41 @@
       <div class="day-header">
         <div class="day-num"><div class="num">13</div><div class="mon">Mar</div></div>
         <div class="day-info">
-          <div class="day-label">Sábado · Día 6</div>
-          <div class="day-title">Monte Fuji y Kawaguchiko</div>
-          <div class="day-subtitle">Excursión de día completo. Regreso a Tokio</div>
+          <div class="day-label" data-i18n="Sábado · Día 6">Sábado · Día 6</div>
+          <div class="day-title" data-i18n="Monte Fuji y Kawaguchiko">Monte Fuji y Kawaguchiko</div>
+          <div class="day-subtitle" data-i18n="Excursión de día completo. Regreso a Tokio">Excursión de día completo. Regreso a Tokio</div>
         </div>
       </div>
       <div class="day-body">
         <ul class="act-list">
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg></div>
-            <div><div class="act-name">Excursión Monte Fuji + Lago Kawaguchiko</div><div class="act-note">Tour de día completo, incluye transporte</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+            <div><div class="act-name" data-i18n="Excursión Monte Fuji + Lago Kawaguchiko">Excursión Monte Fuji + Lago Kawaguchiko</div><div class="act-note" data-i18n="Vistas del Monte Fuji desde el Lago Kawaguchiko, con paradas fotográficas y actividades junto al lago.">Vistas del Monte Fuji desde el Lago Kawaguchiko, con paradas fotográficas y actividades junto al lago.</div><div class="tag-paid" data-i18n="💴 Con costo · Pendiente">💴 Con costo · Pendiente</div></div></li>
         </ul>
       </div>
     </div>
 
-    <div class="city-divider"><div class="line"></div><div class="label">⛩️ Kioto · Gion / Higashiyama</div><div class="line"></div></div>
+    <div class="city-divider"><div class="line"></div><div class="label" data-i18n="⛩️ Kioto · Gion / Higashiyama">⛩️ Kioto · Gion / Higashiyama</div><div class="line"></div></div>
 
     <!-- DÍA 7 -->
     <div class="day-card">
       <div class="day-header">
         <div class="day-num"><div class="num">14</div><div class="mon">Mar</div></div>
         <div class="day-info">
-          <div class="day-label">Domingo · Día 7</div>
-          <div class="day-title">Tokio → Kioto</div>
-          <div class="day-subtitle">Shinkansen, Fushimi Inari, Gion y Pontocho</div>
+          <div class="day-label" data-i18n="Domingo · Día 7">Domingo · Día 7</div>
+          <div class="day-title" data-i18n="Tokio → Kioto">Tokio → Kioto</div>
+          <div class="day-subtitle" data-i18n="Shinkansen, Fushimi Inari, Gion y Pontocho">Shinkansen, Fushimi Inari, Gion y Pontocho</div>
         </div>
       </div>
       <div class="day-body">
         <ul class="act-list">
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div>
-            <div><div class="act-name">Traslado en Shinkansen Tokio → Kioto</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+            <div><div class="act-name" data-i18n="Traslado en tren Tokio → Kioto">Traslado en tren Tokio → Kioto</div><div class="act-note" data-i18n="Viaje en tren bala (Shinkansen) de aproximadamente 2 horas y 15 minutos.">Viaje en tren bala (Shinkansen) de aproximadamente 2 horas y 15 minutos.</div><div class="tag-paid" data-i18n="💴 Con costo · Pendiente">💴 Con costo · Pendiente</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 1 8 8c0 5.4-8 14-8 14S4 15.4 4 10a8 8 0 0 1 8-8z"/></svg></div>
+            <div><div class="act-name" data-i18n="Check-in · The Kanazawa Sainoniwa Hotel">Check-in · The Kanazawa Sainoniwa Hotel</div><div class="act-note" data-i18n="Registro de entrada al hotel y acomodo de equipaje.">Registro de entrada al hotel y acomodo de equipaje.</div></div></li>
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-            <div><div class="act-name">Santuario Fushimi Inari</div><div class="act-note">Miles de torii</div><div class="tag-free">🆓 Gratis</div></div></li>
+            <div><div class="act-name" data-i18n="Santuario Fushimi Inari">Santuario Fushimi Inari</div><div class="act-note" data-i18n="Santuario sintoísta famoso por sus miles de puertas torii color naranja que suben la montaña.">Santuario sintoísta famoso por sus miles de puertas torii color naranja que suben la montaña.</div><div class="tag-free" data-i18n="🆓 Gratis">🆓 Gratis</div></div></li>
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-            <div><div class="act-name">Gion y Pontocho</div><div class="act-note">Barrio de geishas, paseo nocturno</div><div class="tag-free">🆓 Gratis</div></div></li>
+            <div><div class="act-name" data-i18n="Gion y Pontocho">Gion y Pontocho</div><div class="act-note" data-i18n="Barrios tradicionales conocidos por sus casas de té, geishas y callejones iluminados con farolillos.">Barrios tradicionales conocidos por sus casas de té, geishas y callejones iluminados con farolillos.</div><div class="tag-free" data-i18n="🆓 Gratis">🆓 Gratis</div></div></li>
         </ul>
       </div>
     </div>
@@ -891,19 +951,19 @@
       <div class="day-header">
         <div class="day-num"><div class="num">15</div><div class="mon">Mar</div></div>
         <div class="day-info">
-          <div class="day-label">Lunes · Día 8</div>
-          <div class="day-title">Arashiyama y Kinkaku-ji</div>
-          <div class="day-subtitle">Bosque de bambú y Nishiki Market</div>
+          <div class="day-label" data-i18n="Lunes · Día 8">Lunes · Día 8</div>
+          <div class="day-title" data-i18n="Arashiyama y Kinkaku-ji">Arashiyama y Kinkaku-ji</div>
+          <div class="day-subtitle" data-i18n="Bosque de bambú y Nishiki Market">Bosque de bambú y Nishiki Market</div>
         </div>
       </div>
       <div class="day-body">
         <ul class="act-list">
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-            <div><div class="act-name">Bosque de Bambú de Arashiyama</div><div class="tag-free">🆓 Gratis</div></div></li>
+            <div><div class="act-name" data-i18n="Bosque de Bambú de Arashiyama">Bosque de Bambú de Arashiyama</div><div class="act-note" data-i18n="Sendero entre altísimos tallos de bambú, uno de los paisajes más fotografiados de Japón.">Sendero entre altísimos tallos de bambú, uno de los paisajes más fotografiados de Japón.</div><div class="tag-free" data-i18n="🆓 Gratis">🆓 Gratis</div></div></li>
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg></div>
-            <div><div class="act-name">Kinkaku-ji (Pabellón Dorado)</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+            <div><div class="act-name" data-i18n="Kinkaku-ji (Pabellón Dorado)">Kinkaku-ji (Pabellón Dorado)</div><div class="act-note" data-i18n="Templo zen recubierto en pan de oro, reflejado en un estanque tranquilo.">Templo zen recubierto en pan de oro, reflejado en un estanque tranquilo.</div><div class="tag-paid" data-i18n="💴 Con costo · Pendiente">💴 Con costo · Pendiente</div></div></li>
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-            <div><div class="act-name">Nishiki Market</div><div class="act-note">Compras opcionales</div><div class="tag-free">🆓 Gratis</div></div></li>
+            <div><div class="act-name" data-i18n="Nishiki Market">Nishiki Market</div><div class="act-note" data-i18n="Mercado techado de casi 400 años conocido como 'la cocina de Kioto', con puestos de comida local.">Mercado techado de casi 400 años conocido como 'la cocina de Kioto', con puestos de comida local.</div><div class="tag-free" data-i18n="🆓 Gratis">🆓 Gratis</div></div></li>
         </ul>
       </div>
     </div>
@@ -913,21 +973,21 @@
       <div class="day-header">
         <div class="day-num"><div class="num">16</div><div class="mon">Mar</div></div>
         <div class="day-info">
-          <div class="day-label">Martes · Día 9</div>
-          <div class="day-title">Nara</div>
-          <div class="day-subtitle">Parque de Nara, Tōdai-ji y Naramachi. Regreso a Kioto</div>
+          <div class="day-label" data-i18n="Martes · Día 9">Martes · Día 9</div>
+          <div class="day-title" data-i18n="Nara">Nara</div>
+          <div class="day-subtitle" data-i18n="Parque de Nara, Tōdai-ji y Naramachi. Regreso a Kioto">Parque de Nara, Tōdai-ji y Naramachi. Regreso a Kioto</div>
         </div>
       </div>
       <div class="day-body">
         <ul class="act-list">
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-            <div><div class="act-name">Parque de Nara (ciervos)</div><div class="tag-free">🆓 Gratis</div></div></li>
+            <div><div class="act-name" data-i18n="Parque de Nara (ciervos)">Parque de Nara (ciervos)</div><div class="act-note" data-i18n="Parque donde cientos de ciervos sagrados conviven libremente con los visitantes.">Parque donde cientos de ciervos sagrados conviven libremente con los visitantes.</div><div class="tag-free" data-i18n="🆓 Gratis">🆓 Gratis</div></div></li>
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg></div>
-            <div><div class="act-name">Templo Tōdai-ji</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+            <div><div class="act-name" data-i18n="Templo Tōdai-ji">Templo Tōdai-ji</div><div class="act-note" data-i18n="Templo budista que alberga una de las estatuas de Buda de bronce más grandes del mundo.">Templo budista que alberga una de las estatuas de Buda de bronce más grandes del mundo.</div><div class="tag-paid" data-i18n="💴 Con costo · Pendiente">💴 Con costo · Pendiente</div></div></li>
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-            <div><div class="act-name">Santuario Kasuga Taisha</div><div class="act-note">Entrada al santuario sin costo</div><div class="tag-free">🆓 Gratis</div></div></li>
+            <div><div class="act-name" data-i18n="Santuario Kasuga Taisha">Santuario Kasuga Taisha</div><div class="act-note" data-i18n="Santuario sintoísta famoso por sus miles de faroles de piedra y bronce; entrada al santuario sin costo.">Santuario sintoísta famoso por sus miles de faroles de piedra y bronce; entrada al santuario sin costo.</div><div class="tag-free" data-i18n="🆓 Gratis">🆓 Gratis</div></div></li>
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-            <div><div class="act-name">Naramachi</div><div class="act-note">Barrio histórico, paseo</div><div class="tag-free">🆓 Gratis</div></div></li>
+            <div><div class="act-name" data-i18n="Naramachi">Naramachi</div><div class="act-note" data-i18n="Antiguo barrio comercial con casas tradicionales de madera, hoy con cafés y tiendas.">Antiguo barrio comercial con casas tradicionales de madera, hoy con cafés y tiendas.</div><div class="tag-free" data-i18n="🆓 Gratis">🆓 Gratis</div></div></li>
         </ul>
       </div>
     </div>
@@ -937,45 +997,47 @@
       <div class="day-header">
         <div class="day-num"><div class="num">17</div><div class="mon">Mar</div></div>
         <div class="day-info">
-          <div class="day-label">Miércoles · Día 10</div>
-          <div class="day-title">Kiyomizu-dera</div>
-          <div class="day-subtitle">Higashiyama, Yasaka Shrine y ceremonia del té</div>
+          <div class="day-label" data-i18n="Miércoles · Día 10">Miércoles · Día 10</div>
+          <div class="day-title" data-i18n="Kiyomizu-dera">Kiyomizu-dera</div>
+          <div class="day-subtitle" data-i18n="Higashiyama, Yasaka Shrine y ceremonia del té">Higashiyama, Yasaka Shrine y ceremonia del té</div>
         </div>
       </div>
       <div class="day-body">
         <ul class="act-list">
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg></div>
-            <div><div class="act-name">Templo Kiyomizu-dera</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+            <div><div class="act-name" data-i18n="Templo Kiyomizu-dera">Templo Kiyomizu-dera</div><div class="act-note" data-i18n="Templo budista construido sobre pilares de madera, con una terraza con vistas panorámicas de Kioto.">Templo budista construido sobre pilares de madera, con una terraza con vistas panorámicas de Kioto.</div><div class="tag-paid" data-i18n="💴 Con costo · Pendiente">💴 Con costo · Pendiente</div></div></li>
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-            <div><div class="act-name">Higashiyama</div><div class="act-note">Callejones históricos, paseo</div><div class="tag-free">🆓 Gratis</div></div></li>
+            <div><div class="act-name" data-i18n="Higashiyama">Higashiyama</div><div class="act-note" data-i18n="Distrito histórico con calles empedradas, tiendas tradicionales y arquitectura de la era Edo.">Distrito histórico con calles empedradas, tiendas tradicionales y arquitectura de la era Edo.</div><div class="tag-free" data-i18n="🆓 Gratis">🆓 Gratis</div></div></li>
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-            <div><div class="act-name">Santuario Yasaka</div><div class="tag-free">🆓 Gratis</div></div></li>
+            <div><div class="act-name" data-i18n="Santuario Yasaka">Santuario Yasaka</div><div class="act-note" data-i18n="Santuario sintoísta a la entrada del barrio de Gion, punto de partida para explorar Higashiyama.">Santuario sintoísta a la entrada del barrio de Gion, punto de partida para explorar Higashiyama.</div><div class="tag-free" data-i18n="🆓 Gratis">🆓 Gratis</div></div></li>
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg></div>
-            <div><div class="act-name">Ceremonia del té</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+            <div><div class="act-name" data-i18n="Ceremonia del té">Ceremonia del té</div><div class="act-note" data-i18n="Experiencia tradicional japonesa para aprender el ritual de preparación y degustación del té matcha.">Experiencia tradicional japonesa para aprender el ritual de preparación y degustación del té matcha.</div><div class="tag-paid" data-i18n="💴 Con costo · Pendiente">💴 Con costo · Pendiente</div></div></li>
         </ul>
       </div>
     </div>
 
-    <div class="city-divider"><div class="line"></div><div class="label">🏙️ Osaka · Namba / Dotonbori</div><div class="line"></div></div>
+    <div class="city-divider"><div class="line"></div><div class="label" data-i18n="🏙️ Osaka · Namba / Dotonbori">🏙️ Osaka · Namba / Dotonbori</div><div class="line"></div></div>
 
     <!-- DÍA 11 -->
     <div class="day-card">
       <div class="day-header">
         <div class="day-num"><div class="num">18</div><div class="mon">Mar</div></div>
         <div class="day-info">
-          <div class="day-label">Jueves · Día 11</div>
-          <div class="day-title">Kioto → Osaka</div>
-          <div class="day-subtitle">Kuromon Market, Shinsaibashi y Dotonbori</div>
+          <div class="day-label" data-i18n="Jueves · Día 11">Jueves · Día 11</div>
+          <div class="day-title" data-i18n="Kioto → Osaka">Kioto → Osaka</div>
+          <div class="day-subtitle" data-i18n="Kuromon Market, Shinsaibashi y Dotonbori">Kuromon Market, Shinsaibashi y Dotonbori</div>
         </div>
       </div>
       <div class="day-body">
         <ul class="act-list">
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div>
-            <div><div class="act-name">Traslado en Shinkansen Kioto → Osaka</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+            <div><div class="act-name" data-i18n="Traslado en tren Kioto → Osaka">Traslado en tren Kioto → Osaka</div><div class="act-note" data-i18n="Viaje en tren de aproximadamente 15 a 30 minutos.">Viaje en tren de aproximadamente 15 a 30 minutos.</div><div class="tag-paid" data-i18n="💴 Con costo · Pendiente">💴 Con costo · Pendiente</div></div></li>
+          <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 1 8 8c0 5.4-8 14-8 14S4 15.4 4 10a8 8 0 0 1 8-8z"/></svg></div>
+            <div><div class="act-name" data-i18n="Check-in · KOKO HOTEL Osaka Namba Sennichimae">Check-in · KOKO HOTEL Osaka Namba Sennichimae</div><div class="act-note" data-i18n="Registro de entrada al hotel y acomodo de equipaje.">Registro de entrada al hotel y acomodo de equipaje.</div></div></li>
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-            <div><div class="act-name">Mercado Kuromon</div><div class="act-note">Comida callejera por cuenta propia</div><div class="tag-free">🆓 Gratis (entrada)</div></div></li>
+            <div><div class="act-name" data-i18n="Mercado Kuromon">Mercado Kuromon</div><div class="act-note" data-i18n="Mercado techado conocido como 'la cocina de Osaka', con mariscos frescos y comida callejera.">Mercado techado conocido como 'la cocina de Osaka', con mariscos frescos y comida callejera.</div><div class="tag-free" data-i18n="🆓 Gratis (entrada)">🆓 Gratis (entrada)</div></div></li>
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-            <div><div class="act-name">Shinsaibashi y Dotonbori</div><div class="act-note">Paseo, compras y cena</div><div class="tag-free">🆓 Gratis</div></div></li>
+            <div><div class="act-name" data-i18n="Shinsaibashi y Dotonbori">Shinsaibashi y Dotonbori</div><div class="act-note" data-i18n="Zona comercial y de entretenimiento con el icónico letrero de Glico y canales iluminados.">Zona comercial y de entretenimiento con el icónico letrero de Glico y canales iluminados.</div><div class="tag-free" data-i18n="🆓 Gratis">🆓 Gratis</div></div></li>
         </ul>
       </div>
     </div>
@@ -985,15 +1047,15 @@
       <div class="day-header">
         <div class="day-num"><div class="num">19</div><div class="mon">Mar</div></div>
         <div class="day-info">
-          <div class="day-label">Viernes · Día 12</div>
-          <div class="day-title">Universal Studios Japan</div>
-          <div class="day-subtitle">Día completo en el parque</div>
+          <div class="day-label" data-i18n="Viernes · Día 12">Viernes · Día 12</div>
+          <div class="day-title" data-i18n="Universal Studios Japan">Universal Studios Japan</div>
+          <div class="day-subtitle" data-i18n="Día completo en el parque">Día completo en el parque</div>
         </div>
       </div>
       <div class="day-body">
         <ul class="act-list">
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><circle cx="12" cy="12" r="9"/></svg></div>
-            <div><div class="act-name">Universal Studios Japan · día completo</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+            <div><div class="act-name" data-i18n="Universal Studios Japan · día completo">Universal Studios Japan · día completo</div><div class="act-note" data-i18n="Parque temático con atracciones de Nintendo, Harry Potter y otras franquicias populares.">Parque temático con atracciones de Nintendo, Harry Potter y otras franquicias populares.</div><div class="tag-paid" data-i18n="💴 Con costo · Pendiente">💴 Con costo · Pendiente</div></div></li>
         </ul>
       </div>
     </div>
@@ -1003,19 +1065,19 @@
       <div class="day-header">
         <div class="day-num"><div class="num">20</div><div class="mon">Mar</div></div>
         <div class="day-info">
-          <div class="day-label">Sábado · Día 13</div>
-          <div class="day-title">Castillo de Osaka</div>
-          <div class="day-subtitle">Umeda Sky Building, compras y Dotonbori</div>
+          <div class="day-label" data-i18n="Sábado · Día 13">Sábado · Día 13</div>
+          <div class="day-title" data-i18n="Castillo de Osaka">Castillo de Osaka</div>
+          <div class="day-subtitle" data-i18n="Umeda Sky Building, compras y Dotonbori">Umeda Sky Building, compras y Dotonbori</div>
         </div>
       </div>
       <div class="day-body">
         <ul class="act-list">
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg></div>
-            <div><div class="act-name">Castillo de Osaka</div><div class="act-note">Jardines exteriores gratis; interior/museo con costo</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+            <div><div class="act-name" data-i18n="Castillo de Osaka">Castillo de Osaka</div><div class="act-note" data-i18n="Castillo histórico rodeado de jardines, símbolo de la ciudad de Osaka.">Castillo histórico rodeado de jardines, símbolo de la ciudad de Osaka.</div><div class="tag-paid" data-i18n="💴 Con costo · Pendiente">💴 Con costo · Pendiente</div></div></li>
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg></div>
-            <div><div class="act-name">Umeda Sky Building</div><div class="act-note">Mirador</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+            <div><div class="act-name" data-i18n="Umeda Sky Building">Umeda Sky Building</div><div class="act-note" data-i18n="Torres gemelas conectadas por un mirador circular en las alturas, con vistas de la ciudad.">Torres gemelas conectadas por un mirador circular en las alturas, con vistas de la ciudad.</div><div class="tag-paid" data-i18n="💴 Con costo · Pendiente">💴 Con costo · Pendiente</div></div></li>
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-            <div><div class="act-name">Compras y Dotonbori</div><div class="tag-free">🆓 Gratis (compras opcionales)</div></div></li>
+            <div><div class="act-name" data-i18n="Compras y Dotonbori">Compras y Dotonbori</div><div class="act-note" data-i18n="Tiempo libre para compras y explorar los restaurantes de la zona.">Tiempo libre para compras y explorar los restaurantes de la zona.</div><div class="tag-free" data-i18n="🆓 Gratis (compras opcionales)">🆓 Gratis (compras opcionales)</div></div></li>
         </ul>
       </div>
     </div>
@@ -1025,17 +1087,17 @@
       <div class="day-header">
         <div class="day-num"><div class="num">21</div><div class="mon">Mar</div></div>
         <div class="day-info">
-          <div class="day-label">Domingo · Día 14</div>
-          <div class="day-title">Hiroshima y Miyajima</div>
-          <div class="day-subtitle">Excursión de día completo. Regreso a Osaka</div>
+          <div class="day-label" data-i18n="Domingo · Día 14">Domingo · Día 14</div>
+          <div class="day-title" data-i18n="Hiroshima y Miyajima">Hiroshima y Miyajima</div>
+          <div class="day-subtitle" data-i18n="Excursión de día completo. Regreso a Osaka">Excursión de día completo. Regreso a Osaka</div>
         </div>
       </div>
       <div class="day-body">
         <ul class="act-list">
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-            <div><div class="act-name">Parque Memorial de la Paz de Hiroshima</div><div class="act-note">Parque gratis; museo con costo</div><div class="tag-free">🆓 Gratis (parque)</div></div></li>
+            <div><div class="act-name" data-i18n="Parque Memorial de la Paz de Hiroshima">Parque Memorial de la Paz de Hiroshima</div><div class="act-note" data-i18n="Parque dedicado a las víctimas de la bomba atómica, con la Cúpula Genbaku y el museo conmemorativo.">Parque dedicado a las víctimas de la bomba atómica, con la Cúpula Genbaku y el museo conmemorativo.</div><div class="tag-free" data-i18n="🆓 Gratis (parque)">🆓 Gratis (parque)</div></div></li>
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg></div>
-            <div><div class="act-name">Isla de Miyajima y Santuario Itsukushima</div><div class="act-note">Ferry + entrada al santuario</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+            <div><div class="act-name" data-i18n="Isla de Miyajima y Santuario Itsukushima">Isla de Miyajima y Santuario Itsukushima</div><div class="act-note" data-i18n="Isla famosa por el torii 'flotante' del santuario Itsukushima y los ciervos que pasean libremente.">Isla famosa por el torii 'flotante' del santuario Itsukushima y los ciervos que pasean libremente.</div><div class="tag-paid" data-i18n="💴 Con costo · Pendiente">💴 Con costo · Pendiente</div></div></li>
         </ul>
       </div>
     </div>
@@ -1045,19 +1107,19 @@
       <div class="day-header">
         <div class="day-num"><div class="num">22</div><div class="mon">Mar</div></div>
         <div class="day-info">
-          <div class="day-label">Lunes · Día 15</div>
-          <div class="day-title">Osaka → Tokio → Regreso</div>
-          <div class="day-subtitle">Últimas compras y traslado al aeropuerto</div>
+          <div class="day-label" data-i18n="Lunes · Día 15">Lunes · Día 15</div>
+          <div class="day-title" data-i18n="Osaka → Tokio → Regreso">Osaka → Tokio → Regreso</div>
+          <div class="day-subtitle" data-i18n="Últimas compras y traslado al aeropuerto">Últimas compras y traslado al aeropuerto</div>
         </div>
       </div>
       <div class="day-body">
         <ul class="act-list">
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div>
-            <div><div class="act-name">Traslado en Shinkansen Osaka → Tokio</div><div class="tag-paid">💴 Con costo · Pendiente</div></div></li>
+            <div><div class="act-name" data-i18n="Traslado en tren Osaka → Tokio">Traslado en tren Osaka → Tokio</div><div class="act-note" data-i18n="Viaje en tren bala (Shinkansen) de aproximadamente 2 horas y 30 minutos.">Viaje en tren bala (Shinkansen) de aproximadamente 2 horas y 30 minutos.</div><div class="tag-paid" data-i18n="💴 Con costo · Pendiente">💴 Con costo · Pendiente</div></div></li>
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-            <div><div class="act-name">Últimas compras / paseo</div><div class="tag-free">🆓 Gratis</div></div></li>
+            <div><div class="act-name" data-i18n="Últimas compras / paseo">Últimas compras / paseo</div><div class="act-note" data-i18n="Tiempo libre para compras de último momento antes del vuelo de regreso.">Tiempo libre para compras de último momento antes del vuelo de regreso.</div><div class="tag-free" data-i18n="🆓 Gratis">🆓 Gratis</div></div></li>
           <li class="act-item"><div class="act-dot"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red-violet)" stroke-width="2.5"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg></div>
-            <div><div class="act-name">Traslado al aeropuerto y vuelo de regreso</div><div class="act-note">Salida de Tokio por la noche (ver pestaña Vuelos)</div></div>
+            <div><div class="act-name" data-i18n="Traslado al aeropuerto y vuelo de regreso">Traslado al aeropuerto y vuelo de regreso</div><div class="act-note" data-i18n="Salida de Tokio por la noche (ver pestaña Vuelos)">Salida de Tokio por la noche (ver pestaña Vuelos)</div></div>
           </li>
         </ul>
       </div>
@@ -1066,165 +1128,162 @@
   </div>
 
   <div class="notice">
-    <strong>Nota:</strong> Actividades propuestas y flexibles — pueden ajustarse según el ritmo y gustos del viaje. Los precios de entradas marcados como "Pendiente" se confirmarán antes de cerrar la cotización.
+    <strong data-i18n="Nota:">Nota:</strong> <span data-i18n="Actividades propuestas y flexibles — pueden ajustarse según el ritmo y gustos del viaje. Los precios de entradas marcados como &quot;Pendiente&quot; se confirmarán antes de cerrar la cotización.">Actividades propuestas y flexibles — pueden ajustarse según el ritmo y gustos del viaje. Los precios de entradas marcados como "Pendiente" se confirmarán antes de cerrar la cotización.</span>
   </div>
 </section>
 
 <!-- ══ VUELOS ════════════════════════════ -->
 <section id="vuelos" class="section">
   <div class="section-header">
-    <div class="section-label">3 opciones de origen</div>
-    <div class="section-title">Vuelos<br>por grupo</div>
-    <p class="section-sub">Cada grupo tiene su propio costo por persona según su ciudad de origen. Pago de vuelos en una sola exhibición.</p>
+    <div class="section-label" data-i18n="3 opciones de origen">3 opciones de origen</div>
+    <div class="section-title" data-i18n-html="title-vuelos">Vuelos<br>por grupo</div>
+    <p class="section-sub" data-i18n="Cada grupo tiene su propio costo por persona según su ciudad de origen. Pago de vuelos en una sola exhibición.">Cada grupo tiene su propio costo por persona según su ciudad de origen. Pago de vuelos en una sola exhibición.</p>
   </div>
 
   <div class="costs-wrap" style="padding-top:20px;">
 
     <div class="costs-group">
-      <div class="costs-group-title">Grupo 1 · Desde Arizona (vía Los Ángeles)</div>
+      <div class="costs-group-title" data-i18n="Grupo 1 · Desde Arizona (vía Los Ángeles)">Grupo 1 · Desde Arizona (vía Los Ángeles)</div>
       <div class="cost-row">
-        <div class="cost-name">Phoenix → Los Ángeles<span class="cost-note">7 de marzo · Con cambios, no reembolsable, asiento seleccionado + 1 maleta documentada</span></div>
-        <div class="cost-pp">400 USD</div>
+        <div class="cost-name"><span data-i18n="Phoenix → Los Ángeles">Phoenix → Los Ángeles</span><span class="cost-note" data-i18n="7 de marzo · Con cambios, no reembolsable, asiento seleccionado + 1 maleta documentada">7 de marzo · Con cambios, no reembolsable, asiento seleccionado + 1 maleta documentada</span></div>
+        <div class="cost-pp" data-i18n="400 USD">400 USD</div>
       </div>
       <div class="cost-row">
-        <div class="cost-name">Los Ángeles → Tokio<span class="cost-note">Delta Airlines · Llegada 8 de marzo</span></div>
-        <div class="cost-pp">1,700 USD</div>
+        <div class="cost-name"><span data-i18n="Los Ángeles → Tokio">Los Ángeles → Tokio</span><span class="cost-note" data-i18n="Delta Airlines · Llegada 8 de marzo">Delta Airlines · Llegada 8 de marzo</span></div>
+        <div class="cost-pp" data-i18n="1,700 USD">1,700 USD</div>
       </div>
       <div class="cost-row">
-        <div class="cost-name">Tokio → Los Ángeles → Phoenix<span class="cost-note">Regreso: sale 22 de marzo, llega el mismo día</span></div>
-        <div class="cost-pp">Incluido</div>
+        <div class="cost-name"><span data-i18n="Tokio → Los Ángeles → Phoenix">Tokio → Los Ángeles → Phoenix</span><span class="cost-note" data-i18n="Regreso: sale 22 de marzo, llega el mismo día">Regreso: sale 22 de marzo, llega el mismo día</span></div>
+        <div class="cost-pp" data-i18n="Incluido">Incluido</div>
       </div>
       <div class="cost-row">
-        <div class="cost-name"><strong>Total por persona</strong></div>
-        <div class="cost-pp"><strong>2,100 USD</strong></div>
-      </div>
-    </div>
-
-    <div class="costs-group">
-      <div class="costs-group-title">Grupo 2 · Desde CDMX (vía Los Ángeles)</div>
-      <div class="cost-row">
-        <div class="cost-name">CDMX → Los Ángeles<span class="cost-note">7 de marzo · Con cambios, no reembolsable, asiento seleccionado + 1 maleta documentada</span></div>
-        <div class="cost-pp">400 USD</div>
-      </div>
-      <div class="cost-row">
-        <div class="cost-name">Los Ángeles → Tokio<span class="cost-note">Delta Airlines · Llegada 8 de marzo</span></div>
-        <div class="cost-pp">1,700 USD</div>
-      </div>
-      <div class="cost-row">
-        <div class="cost-name">Tokio → Los Ángeles → CDMX<span class="cost-note">Regreso: sale 22 de marzo, llega el mismo día</span></div>
-        <div class="cost-pp">Incluido</div>
-      </div>
-      <div class="cost-row">
-        <div class="cost-name"><strong>Total por persona</strong></div>
-        <div class="cost-pp"><strong>2,100 USD</strong></div>
-      </div>
-      <div class="cost-row">
-        <div class="cost-name"><span class="cost-note">⚠️ Pendiente: confirmar si el primer tramo (CDMX–LA) es 400 USD o 400 MXN, ya que el documento original mezcla ambas monedas.</span></div>
+        <div class="cost-name"><strong data-i18n="Total por persona">Total por persona</strong></div>
+        <div class="cost-pp"><strong data-i18n="2,100 USD">2,100 USD</strong></div>
       </div>
     </div>
 
     <div class="costs-group">
-      <div class="costs-group-title">Grupo 3 · V2 Directo desde CDMX (Aeroméxico)</div>
+      <div class="costs-group-title" data-i18n="Grupo 2 · Desde CDMX (vía Los Ángeles)">Grupo 2 · Desde CDMX (vía Los Ángeles)</div>
       <div class="cost-row">
-        <div class="cost-name">CDMX → Tokio directo<span class="cost-note">Aeroméxico · Sale 7 de marzo por la mañana, llega 8 de marzo</span></div>
-        <div class="cost-pp">2,200 USD</div>
+        <div class="cost-name"><span data-i18n="CDMX → Los Ángeles">CDMX → Los Ángeles</span><span class="cost-note" data-i18n="7 de marzo · Con cambios, no reembolsable, asiento seleccionado + 1 maleta documentada">7 de marzo · Con cambios, no reembolsable, asiento seleccionado + 1 maleta documentada</span></div>
+        <div class="cost-pp" data-i18n="400 USD">400 USD</div>
       </div>
       <div class="cost-row">
-        <div class="cost-name">Tokio → CDMX directo<span class="cost-note">Regreso: sale 22 de marzo por la noche, llega el mismo día</span></div>
-        <div class="cost-pp">Incluido</div>
+        <div class="cost-name"><span data-i18n="Los Ángeles → Tokio">Los Ángeles → Tokio</span><span class="cost-note" data-i18n="Delta Airlines · Llegada 8 de marzo">Delta Airlines · Llegada 8 de marzo</span></div>
+        <div class="cost-pp" data-i18n="1,700 USD">1,700 USD</div>
       </div>
       <div class="cost-row">
-        <div class="cost-name"><strong>Total por persona</strong></div>
-        <div class="cost-pp"><strong>2,200 USD</strong></div>
+        <div class="cost-name"><span data-i18n="Tokio → Los Ángeles → CDMX">Tokio → Los Ángeles → CDMX</span><span class="cost-note" data-i18n="Regreso: sale 22 de marzo, llega el mismo día">Regreso: sale 22 de marzo, llega el mismo día</span></div>
+        <div class="cost-pp" data-i18n="Incluido">Incluido</div>
       </div>
       <div class="cost-row">
-        <div class="cost-name"><span class="cost-note">Sin escala en Los Ángeles — vuelo directo en ambos tramos</span></div>
+        <div class="cost-name"><strong data-i18n="Total por persona">Total por persona</strong></div>
+        <div class="cost-pp"><strong data-i18n="2,100 USD">2,100 USD</strong></div>
+      </div>
+    </div>
+
+    <div class="costs-group">
+      <div class="costs-group-title" data-i18n="Grupo 3 · V2 Directo desde CDMX (Aeroméxico)">Grupo 3 · V2 Directo desde CDMX (Aeroméxico)</div>
+      <div class="cost-row">
+        <div class="cost-name"><span data-i18n="CDMX → Tokio directo">CDMX → Tokio directo</span><span class="cost-note" data-i18n="Aeroméxico · Sale 7 de marzo por la mañana, llega 8 de marzo">Aeroméxico · Sale 7 de marzo por la mañana, llega 8 de marzo</span></div>
+        <div class="cost-pp" data-i18n="2,200 USD">2,200 USD</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-name"><span data-i18n="Tokio → CDMX directo">Tokio → CDMX directo</span><span class="cost-note" data-i18n="Regreso: sale 22 de marzo por la noche, llega el mismo día">Regreso: sale 22 de marzo por la noche, llega el mismo día</span></div>
+        <div class="cost-pp" data-i18n="Incluido">Incluido</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-name"><strong data-i18n="Total por persona">Total por persona</strong></div>
+        <div class="cost-pp"><strong data-i18n="2,200 USD">2,200 USD</strong></div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-name"><span class="cost-note" data-i18n="Sin escala en Los Ángeles — vuelo directo en ambos tramos">Sin escala en Los Ángeles — vuelo directo en ambos tramos</span></div>
       </div>
     </div>
 
   </div>
 
   <div class="notice">
-    <strong>Condiciones:</strong> Todos los boletos son con cambios permitidos, no reembolsables, incluyen selección de asiento y 1 maleta documentada. Pago en una sola exhibición.
+    <strong data-i18n="Condiciones:">Condiciones:</strong> <span data-i18n="Todos los boletos son con cambios permitidos, no reembolsables, incluyen selección de asiento y 1 maleta documentada. Pago en una sola exhibición.">Todos los boletos son con cambios permitidos, no reembolsables, incluyen selección de asiento y 1 maleta documentada. Pago en una sola exhibición.</span>
   </div>
 </section>
 
 <!-- ══ HOTELES ═══════════════════════════ -->
 <section id="hoteles" class="section">
   <div class="section-header">
-    <div class="section-label">3 ciudades</div>
-    <div class="section-title">Dónde<br>dormir</div>
-    <p class="section-sub">3 hoteles confirmados con tarifas para habitación de 5 o de 4 personas. Recuerda: una misma habitación puede combinar viajeros de distinto origen de vuelo.</p>
+    <div class="section-label" data-i18n="3 ciudades">3 ciudades</div>
+    <div class="section-title" data-i18n-html="title-hoteles">Dónde<br>dormir</div>
+    <p class="section-sub" data-i18n="3 hoteles confirmados con tarifas para habitación de 5 o de 4 personas. Recuerda: una misma habitación puede combinar viajeros de distinto origen de vuelo.">3 hoteles confirmados con tarifas para habitación de 5 o de 4 personas. Recuerda: una misma habitación puede combinar viajeros de distinto origen de vuelo.</p>
   </div>
 
   <div class="hotel-grid">
 
     <div style="padding: 0 0 4px; margin-bottom: -4px;">
-      <div style="font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--olive);padding:0 2px 6px;">📍 Tokio · 8 — 14 Mar · 6 noches</div>
+      <div style="font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--olive);padding:0 2px 6px;" data-i18n="📍 Tokio · 8 — 14 Mar · 6 noches">📍 Tokio · 8 — 14 Mar · 6 noches</div>
     </div>
     <div class="hotel-card recommended">
-      <div class="hotel-badge">✦ Propuesta</div>
+      <div class="hotel-badge" data-i18n="✦ Propuesta">✦ Propuesta</div>
       <div class="hotel-body">
-        <div class="hotel-name">Sotetsu Fresa Inn Ginza Nanachome</div>
+        <div class="hotel-name" data-i18n="Sotetsu Fresa Inn Ginza Nanachome">Sotetsu Fresa Inn Ginza Nanachome</div>
         <div class="hotel-perks">
-          <span class="perk-tag">Desayuno incluido</span>
-          <span class="perk-tag">Paga hasta 18 MSI</span>
+          <span class="perk-tag" data-i18n="Desayuno incluido">Desayuno incluido</span>
+          <span class="perk-tag" data-i18n="Paga hasta 18 MSI">Paga hasta 18 MSI</span>
         </div>
         <div class="room-row">
-          <div class="room-label"><strong>Habitación 5 personas</strong><br>6 noches, desayuno incluido</div>
+          <div class="room-label"><strong data-i18n="Habitación 5 personas">Habitación 5 personas</strong><br><span data-i18n="6 noches, desayuno incluido">6 noches, desayuno incluido</span></div>
           <div class="room-price"><div class="tot">2,900 USD</div><div class="pp">580 USD c/u</div></div>
         </div>
         <div class="room-row">
-          <div class="room-label"><strong>Habitación 4 personas</strong><br>6 noches, desayuno incluido</div>
+          <div class="room-label"><strong data-i18n="Habitación 4 personas">Habitación 4 personas</strong><br><span data-i18n="6 noches, desayuno incluido">6 noches, desayuno incluido</span></div>
           <div class="room-price"><div class="tot">2,700 USD</div><div class="pp">675 USD c/u</div></div>
         </div>
-        <a class="hotel-link" href="https://en.sotetsu-hotels.com/fresa-inn/ginza7/" target="_blank">Ver sitio oficial del hotel →</a>
+        <a class="hotel-link" href="https://en.sotetsu-hotels.com/fresa-inn/ginza7/" target="_blank"><span data-i18n="Ver sitio oficial del hotel →">Ver sitio oficial del hotel →</span></a>
       </div>
     </div>
 
     <div style="padding: 12px 0 4px; margin-bottom: -4px;">
-      <div style="font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--olive);padding:0 2px 6px;">📍 Kioto · 14 — 18 Mar · 4 noches</div>
+      <div style="font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--olive);padding:0 2px 6px;" data-i18n="📍 Kioto · 14 — 18 Mar · 4 noches">📍 Kioto · 14 — 18 Mar · 4 noches</div>
     </div>
     <div class="hotel-card recommended">
-      <div class="hotel-badge">✦ Propuesta</div>
+      <div class="hotel-badge" data-i18n="✦ Propuesta">✦ Propuesta</div>
       <div class="hotel-body">
-        <div class="hotel-name">The Kanazawa Sainoniwa Hotel</div>
+        <div class="hotel-name" data-i18n="The Kanazawa Sainoniwa Hotel">The Kanazawa Sainoniwa Hotel</div>
         <div class="hotel-perks">
-          <span class="perk-tag">Desayuno incluido</span>
-          <span class="perk-tag">Paga hasta 18 MSI</span>
+          <span class="perk-tag" data-i18n="Desayuno incluido">Desayuno incluido</span>
+          <span class="perk-tag" data-i18n="Paga hasta 18 MSI">Paga hasta 18 MSI</span>
         </div>
         <div class="room-row">
-          <div class="room-label"><strong>Habitación 5 personas</strong><br>4 noches, desayuno incluido</div>
+          <div class="room-label"><strong data-i18n="Habitación 5 personas">Habitación 5 personas</strong><br><span data-i18n="4 noches, desayuno incluido">4 noches, desayuno incluido</span></div>
           <div class="room-price"><div class="tot">2,200 USD</div><div class="pp">440 USD c/u</div></div>
         </div>
         <div class="room-row">
-          <div class="room-label"><strong>Habitación 4 personas</strong><br>4 noches, desayuno incluido</div>
+          <div class="room-label"><strong data-i18n="Habitación 4 personas">Habitación 4 personas</strong><br><span data-i18n="4 noches, desayuno incluido">4 noches, desayuno incluido</span></div>
           <div class="room-price"><div class="tot">2,200 USD</div><div class="pp">550 USD c/u</div></div>
         </div>
-        <a class="hotel-link" href="https://www.expedia.com/Kanazawa-Hotels-Kanazawa-Sainoniwa-Hotel.h9989557.Hotel-Information" target="_blank">Ver disponibilidad →</a>
+        <a class="hotel-link" href="https://www.expedia.com/Kanazawa-Hotels-Kanazawa-Sainoniwa-Hotel.h9989557.Hotel-Information" target="_blank"><span data-i18n="Ver disponibilidad →">Ver disponibilidad →</span></a>
       </div>
     </div>
 
     <div style="padding: 12px 0 4px; margin-bottom: -4px;">
-      <div style="font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--olive);padding:0 2px 6px;">📍 Osaka · 18 — 22 Mar · 4 noches</div>
+      <div style="font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--olive);padding:0 2px 6px;" data-i18n="📍 Osaka · 18 — 22 Mar · 4 noches">📍 Osaka · 18 — 22 Mar · 4 noches</div>
     </div>
     <div class="hotel-card recommended">
-      <div class="hotel-badge">✦ Propuesta</div>
+      <div class="hotel-badge" data-i18n="✦ Propuesta">✦ Propuesta</div>
       <div class="hotel-body">
-        <div class="hotel-name">KOKO HOTEL Osaka Namba Sennichimae</div>
+        <div class="hotel-name" data-i18n="KOKO HOTEL Osaka Namba Sennichimae">KOKO HOTEL Osaka Namba Sennichimae</div>
         <div class="hotel-perks">
-          <span class="perk-tag">Desayuno incluido</span>
-          <span class="perk-tag">18 MSI</span>
+          <span class="perk-tag" data-i18n="Desayuno incluido">Desayuno incluido</span>
+          <span class="perk-tag" data-i18n="18 MSI">18 MSI</span>
         </div>
         <div class="room-row">
-          <div class="room-label"><strong>Habitación 5 personas</strong><br>4 noches, desayuno incluido</div>
+          <div class="room-label"><strong data-i18n="Habitación 5 personas">Habitación 5 personas</strong><br><span data-i18n="4 noches, desayuno incluido">4 noches, desayuno incluido</span></div>
           <div class="room-price"><div class="tot">2,100 USD</div><div class="pp">420 USD c/u</div></div>
         </div>
         <div class="room-row">
-          <div class="room-label"><strong>Habitación 4 personas</strong><br>4 noches, desayuno incluido</div>
+          <div class="room-label"><strong data-i18n="Habitación 4 personas">Habitación 4 personas</strong><br><span data-i18n="4 noches, desayuno incluido">4 noches, desayuno incluido</span></div>
           <div class="room-price"><div class="tot">1,900 USD</div><div class="pp">475 USD c/u</div></div>
         </div>
-        <a class="hotel-link" href="https://koko-hotels.com/osaka_sennichimae_lang/en_on" target="_blank">Ver sitio oficial del hotel →</a>
+        <a class="hotel-link" href="https://koko-hotels.com/osaka_sennichimae_lang/en_on" target="_blank"><span data-i18n="Ver sitio oficial del hotel →">Ver sitio oficial del hotel →</span></a>
       </div>
     </div>
 
@@ -1234,73 +1293,122 @@
 <!-- ══ COSTOS ════════════════════════════ -->
 <section id="costos" class="section">
   <div class="section-header">
-    <div class="section-label">Vuelos + hospedaje</div>
-    <div class="section-title">Costos<br>por persona</div>
-    <p class="section-sub">Desglose de vuelo (según origen) y hospedaje (según tamaño de habitación). No incluye entradas, tours ni traslados en Shinkansen — ver notas "Pendiente" en Itinerario.</p>
+    <div class="section-label" data-i18n="Vuelos + hospedaje">Vuelos + hospedaje</div>
+    <div class="section-title" data-i18n-html="title-costos">Costos<br>por persona</div>
+    <p class="section-sub" data-i18n="Desglose de vuelo (según origen) y hospedaje (según tamaño de habitación). No incluye entradas, tours ni traslados en Shinkansen — ver notas &quot;Pendiente&quot; en Itinerario.">Desglose de vuelo (según origen) y hospedaje (según tamaño de habitación). No incluye entradas, tours ni traslados en Shinkansen — ver notas "Pendiente" en Itinerario.</p>
   </div>
 
   <div class="costs-wrap" style="padding-top:20px;">
 
     <div class="costs-group">
-      <div class="costs-group-title">Hospedaje por persona (3 hoteles)</div>
+      <div class="costs-group-title" data-i18n="Hospedaje por persona (3 hoteles)">Hospedaje por persona (3 hoteles)</div>
       <div class="cost-row">
-        <div class="cost-name">Si viaja en habitación de <strong>5 personas</strong><span class="cost-note">Tokio 580 + Kioto/Kanazawa 440 + Osaka 420 USD</span></div>
-        <div class="cost-pp">1,440 USD</div>
+        <div class="cost-name"><span data-i18n="Si viaja en habitación de ">Si viaja en habitación de </span><strong data-i18n="5 personas">5 personas</strong><span class="cost-note" data-i18n="Tokio 580 + Kioto/Kanazawa 440 + Osaka 420 USD">Tokio 580 + Kioto/Kanazawa 440 + Osaka 420 USD</span></div>
+        <div class="cost-pp" data-i18n="1,440 USD">1,440 USD</div>
       </div>
       <div class="cost-row">
-        <div class="cost-name">Si viaja en habitación de <strong>4 personas</strong><span class="cost-note">Tokio 675 + Kioto/Kanazawa 550 + Osaka 475 USD</span></div>
-        <div class="cost-pp">1,700 USD</div>
+        <div class="cost-name"><span data-i18n="Si viaja en habitación de ">Si viaja en habitación de </span><strong data-i18n="4 personas">4 personas</strong><span class="cost-note" data-i18n="Tokio 675 + Kioto/Kanazawa 550 + Osaka 475 USD">Tokio 675 + Kioto/Kanazawa 550 + Osaka 475 USD</span></div>
+        <div class="cost-pp" data-i18n="1,700 USD">1,700 USD</div>
       </div>
       <div class="cost-row">
-        <div class="cost-name"><span class="cost-note">Una misma persona puede estar en habitación de 5 en un hotel y de 4 en otro; ajustar según la asignación real de cada viajero.</span></div>
-      </div>
-    </div>
-
-    <div class="costs-group">
-      <div class="costs-group-title">Total estimado por persona (vuelo + hospedaje)</div>
-      <div class="cost-row">
-        <div class="cost-name">Arizona · hab. 5 personas<span class="cost-note">2,100 + 1,440 USD</span></div>
-        <div class="cost-pp">3,540 USD</div>
-      </div>
-      <div class="cost-row">
-        <div class="cost-name">Arizona · hab. 4 personas<span class="cost-note">2,100 + 1,700 USD</span></div>
-        <div class="cost-pp">3,800 USD</div>
-      </div>
-      <div class="cost-row">
-        <div class="cost-name">CDMX vía LA · hab. 5 personas<span class="cost-note">2,100 + 1,440 USD · moneda del primer tramo pendiente</span></div>
-        <div class="cost-pp">3,540 USD</div>
-      </div>
-      <div class="cost-row">
-        <div class="cost-name">CDMX vía LA · hab. 4 personas<span class="cost-note">2,100 + 1,700 USD · moneda del primer tramo pendiente</span></div>
-        <div class="cost-pp">3,800 USD</div>
-      </div>
-      <div class="cost-row">
-        <div class="cost-name">CDMX directo (V2) · hab. 5 personas<span class="cost-note">2,200 + 1,440 USD</span></div>
-        <div class="cost-pp">3,640 USD</div>
-      </div>
-      <div class="cost-row">
-        <div class="cost-name">CDMX directo (V2) · hab. 4 personas<span class="cost-note">2,200 + 1,700 USD</span></div>
-        <div class="cost-pp">3,900 USD</div>
+        <div class="cost-name"><span class="cost-note" data-i18n="Una misma persona puede estar en habitación de 5 en un hotel y de 4 en otro; ajustar según la asignación real de cada viajero.">Una misma persona puede estar en habitación de 5 en un hotel y de 4 en otro; ajustar según la asignación real de cada viajero.</span></div>
       </div>
     </div>
 
     <div class="costs-group">
-      <div class="costs-group-title">Pendientes generales</div>
-      <div class="cost-row"><div class="cost-name">Traslados en Shinkansen (3 tramos)</div><div class="cost-pp">Pendiente</div></div>
-      <div class="cost-row"><div class="cost-name">Entradas y tours marcados 💴 en el itinerario</div><div class="cost-pp">Pendiente</div></div>
+      <div class="costs-group-title" data-i18n="Total estimado por persona (vuelo + hospedaje)">Total estimado por persona (vuelo + hospedaje)</div>
+      <div class="cost-row">
+        <div class="cost-name"><span data-i18n="Arizona · hab. 5 personas">Arizona · hab. 5 personas</span><span class="cost-note" data-i18n="2,100 + 1,440 USD">2,100 + 1,440 USD</span></div>
+        <div class="cost-pp" data-i18n="3,540 USD">3,540 USD</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-name"><span data-i18n="Arizona · hab. 4 personas">Arizona · hab. 4 personas</span><span class="cost-note" data-i18n="2,100 + 1,700 USD">2,100 + 1,700 USD</span></div>
+        <div class="cost-pp" data-i18n="3,800 USD">3,800 USD</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-name"><span data-i18n="CDMX vía LA · hab. 5 personas">CDMX vía LA · hab. 5 personas</span><span class="cost-note" data-i18n="2,100 + 1,440 USD">2,100 + 1,440 USD</span></div>
+        <div class="cost-pp" data-i18n="3,540 USD">3,540 USD</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-name"><span data-i18n="CDMX vía LA · hab. 4 personas">CDMX vía LA · hab. 4 personas</span><span class="cost-note" data-i18n="2,100 + 1,700 USD">2,100 + 1,700 USD</span></div>
+        <div class="cost-pp" data-i18n="3,800 USD">3,800 USD</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-name"><span data-i18n="CDMX directo (V2) · hab. 5 personas">CDMX directo (V2) · hab. 5 personas</span><span class="cost-note" data-i18n="2,200 + 1,440 USD">2,200 + 1,440 USD</span></div>
+        <div class="cost-pp" data-i18n="3,640 USD">3,640 USD</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-name"><span data-i18n="CDMX directo (V2) · hab. 4 personas">CDMX directo (V2) · hab. 4 personas</span><span class="cost-note" data-i18n="2,200 + 1,700 USD">2,200 + 1,700 USD</span></div>
+        <div class="cost-pp" data-i18n="3,900 USD">3,900 USD</div>
+      </div>
+    </div>
+
+    <div class="costs-group">
+      <div class="costs-group-title" data-i18n="Pendientes generales">Pendientes generales</div>
+      <div class="cost-row"><div class="cost-name" data-i18n="Traslados en tren entre ciudades (3 tramos)">Traslados en tren entre ciudades (3 tramos)</div><div class="cost-pp" data-i18n="Pendiente">Pendiente</div></div>
+      <div class="cost-row"><div class="cost-name" data-i18n="Entradas y tours marcados 💴 en el itinerario">Entradas y tours marcados 💴 en el itinerario</div><div class="cost-pp" data-i18n="Pendiente">Pendiente</div></div>
     </div>
 
   </div>
 
   <div class="notice">
-    <strong>Nota:</strong> Estos totales son estimados a partir de la información proporcionada. El costo final por persona depende de la asignación exacta de habitaciones y de confirmar los rubros marcados como "Pendiente".
+    <strong data-i18n="Nota:">Nota:</strong> <span data-i18n="Estos totales son estimados a partir de la información proporcionada. El costo final por persona depende de la asignación exacta de habitaciones y de confirmar los rubros marcados como &quot;Pendiente&quot;.">Estos totales son estimados a partir de la información proporcionada. El costo final por persona depende de la asignación exacta de habitaciones y de confirmar los rubros marcados como "Pendiente".</span>
+  </div>
+</section>
+
+<!-- ══ TÉRMINOS Y CONDICIONES ═════════════ -->
+<section id="tyc" class="section">
+  <div class="section-header">
+    <div class="section-label" data-i18n="Transparencia">Transparencia</div>
+    <div class="section-title" data-i18n-html="title-tyc">Términos &amp;<br>Condiciones</div>
+    <p class="section-sub" data-i18n="Información importante sobre cambios, cancelaciones y reembolsos.">Información importante sobre cambios, cancelaciones y reembolsos.</p>
+  </div>
+
+  <div class="tyc-wrap">
+
+    <div class="tyc-item">
+      <div class="tyc-num" data-i18n="01 · Vuelos">01 · Vuelos</div>
+      <div class="tyc-title" data-i18n="Con cambios, no reembolsables">Con cambios, no reembolsables</div>
+      <div class="tyc-text" data-i18n="Todos los boletos aéreos permiten cambios, pero no son reembolsables. Incluyen selección de asiento y 1 maleta documentada por persona. El pago de los vuelos se realiza en una sola exhibición.">Todos los boletos aéreos permiten cambios, pero no son reembolsables. Incluyen selección de asiento y 1 maleta documentada por persona. El pago de los vuelos se realiza en una sola exhibición.</div>
+    </div>
+
+    <div class="tyc-item">
+      <div class="tyc-num" data-i18n="02 · Hoteles · Reembolsos">02 · Hoteles · Reembolsos</div>
+      <div class="tyc-title" data-i18n="Reembolso total hasta 1 mes antes">Reembolso total hasta 1 mes antes</div>
+      <div class="tyc-text" data-i18n="Los hoteles tienen reembolso total si la cancelación se solicita hasta 1 mes antes de la fecha de viaje.">Los hoteles tienen reembolso total si la cancelación se solicita hasta 1 mes antes de la fecha de viaje.</div>
+    </div>
+
+    <div class="tyc-item">
+      <div class="tyc-num" data-i18n="03 · Hoteles · Cancelación tras confirmar">03 · Hoteles · Cancelación tras confirmar</div>
+      <div class="tyc-title" data-i18n="Multa del 10% tras confirmación">Multa del 10% tras confirmación</div>
+      <div class="tyc-text" data-i18n="Una vez que la familia confirma el viaje, si posteriormente se solicita la cancelación, se aplica una multa equivalente al 10% del costo total de los hoteles. Este cargo se hará llegar a través de un link de pago.">Una vez que la familia confirma el viaje, si posteriormente se solicita la cancelación, se aplica una multa equivalente al 10% del costo total de los hoteles. Este cargo se hará llegar a través de un link de pago.</div>
+    </div>
+
+    <div class="tyc-item">
+      <div class="tyc-num" data-i18n="04 · Cambios en la cotización">04 · Cambios en la cotización</div>
+      <div class="tyc-title" data-i18n="3 cambios sin costo, después 50 USD">3 cambios sin costo, después 50 USD</div>
+      <div class="tyc-text" data-i18n="Se pueden realizar hasta 3 cambios en la cotización sin costo adicional. A partir del 4to cambio, cada uno tiene un cargo de 50 USD.">Se pueden realizar hasta 3 cambios en la cotización sin costo adicional. A partir del 4to cambio, cada uno tiene un cargo de 50 USD.</div>
+    </div>
+
+    <div class="tyc-item">
+      <div class="tyc-num" data-i18n="05 · Agrupación de familias">05 · Agrupación de familias</div>
+      <div class="tyc-title" data-i18n="Se busca, pero no se garantiza">Se busca, pero no se garantiza</div>
+      <div class="tyc-text" data-i18n="Al ser un viaje de grupo grande, se hará todo lo posible por mantener a todas las familias en el mismo vuelo, el mismo hotel, etc. Sin embargo, esto no es una confirmación y está sujeto a disponibilidad de la aerolínea y los hoteles al momento de la reservación.">Al ser un viaje de grupo grande, se hará todo lo posible por mantener a todas las familias en el mismo vuelo, el mismo hotel, etc. Sin embargo, esto no es una confirmación y está sujeto a disponibilidad de la aerolínea y los hoteles al momento de la reservación.</div>
+    </div>
+
+    <div class="tyc-item">
+      <div class="tyc-num" data-i18n="06 · Aceptación">06 · Aceptación</div>
+      <div class="tyc-title" data-i18n="Pago = Acuerdo">Pago = Acuerdo</div>
+      <div class="tyc-text" data-i18n="La confirmación de este itinerario implica la aceptación de los términos de la aerolínea, los hoteles y la agencia.">La confirmación de este itinerario implica la aceptación de los términos de la aerolínea, los hoteles y la agencia.</div>
+    </div>
+
   </div>
 </section>
 
 <!-- ══ FOOTER ════════════════════════════ -->
 <footer class="footer">
-  <strong>Itinerario Japón · Tokio, Kioto y Osaka</strong>
-  <span>8 – 22 Marzo 2027 · Cotización preliminar</span>
+  <strong data-i18n="Itinerario Japón · Tokio, Kioto y Osaka">Itinerario Japón · Tokio, Kioto y Osaka</strong>
+  <span data-i18n="7 – 22 Marzo 2027 · Cotización preliminar">7 – 22 Marzo 2027 · Cotización preliminar</span>
   <div class="footer-vv"><em>Venimos a Vivir</em></div>
 </footer>
 
@@ -1313,6 +1421,298 @@
       section.classList.add('active');
       btn.classList.add('active');
       window.scrollTo({ top: document.querySelector('.nav').offsetTop, behavior: 'smooth' });
+    }
+  }
+
+  // ══ TRADUCCIÓN ES / EN ══════════════════
+  const dictEN = {
+    "Cotización · Marzo 2027": "Quote · March 2027",
+    "Tokio · Kioto · Osaka": "Tokyo · Kyoto · Osaka",
+    "7 – 22 Marzo": "March 7 – 22",
+    "desliza para explorar": "swipe to explore",
+    "Itinerario": "Itinerary",
+    "Vuelos": "Flights",
+    "Hoteles": "Hotels",
+    "Costos": "Costs",
+    "Día a día": "Day by day",
+    "6 noches en Tokio, 4 en Kioto/Kanazawa y 4 en Osaka. Actividades marcadas como 🆓 Gratis o 💴 Con costo · Pendiente confirmar precio.": "6 nights in Tokyo, 4 in Kyoto/Kanazawa and 4 in Osaka. Activities marked as 🆓 Free or 💴 Paid · Pending price confirmation.",
+    "Días": "Days",
+    "Ciudades": "Cities",
+    "Nota:": "Note:",
+    "Todos los traslados entre ciudades son en tren (Shinkansen, tren bala): Tokio → Kioto (14 mar), Kioto → Osaka (18 mar), Osaka → Tokio (22 mar). Costo de estos traslados: PENDIENTE.": "All transfers between cities are by train (Shinkansen bullet train): Tokyo → Kyoto (Mar 14), Kyoto → Osaka (Mar 18), Osaka → Tokyo (Mar 22). Cost of these transfers: PENDING.",
+    "🗼 Tokio · Shinjuku": "🗼 Tokyo · Shinjuku",
+    "⛩️ Kioto · Gion / Higashiyama": "⛩️ Kyoto · Gion / Higashiyama",
+    "Lunes · Día 1": "Monday · Day 1",
+    "Martes · Día 2": "Tuesday · Day 2",
+    "Miércoles · Día 3": "Wednesday · Day 3",
+    "Jueves · Día 4": "Thursday · Day 4",
+    "Viernes · Día 5": "Friday · Day 5",
+    "Sábado · Día 6": "Saturday · Day 6",
+    "Domingo · Día 7": "Sunday · Day 7",
+    "Lunes · Día 8": "Monday · Day 8",
+    "Martes · Día 9": "Tuesday · Day 9",
+    "Miércoles · Día 10": "Wednesday · Day 10",
+    "Jueves · Día 11": "Thursday · Day 11",
+    "Viernes · Día 12": "Friday · Day 12",
+    "Sábado · Día 13": "Saturday · Day 13",
+    "Domingo · Día 14": "Sunday · Day 14",
+    "Lunes · Día 15": "Monday · Day 15",
+    "Llegada a Tokio": "Arrival in Tokyo",
+    "Shibuya y Harajuku": "Shibuya and Harajuku",
+    "Asakusa y Akihabara": "Asakusa and Akihabara",
+    "TeamLab y Ginza": "TeamLab and Ginza",
+    "Monte Fuji y Kawaguchiko": "Mount Fuji and Kawaguchiko",
+    "Tokio → Kioto": "Tokyo → Kyoto",
+    "Arashiyama y Kinkaku-ji": "Arashiyama and Kinkaku-ji",
+    "Kioto → Osaka": "Kyoto → Osaka",
+    "Castillo de Osaka": "Osaka Castle",
+    "Hiroshima y Miyajima": "Hiroshima and Miyajima",
+    "Osaka → Tokio → Regreso": "Osaka → Tokyo → Return",
+    "Check-in, descanso y paseo por Shinjuku": "Check-in, rest and stroll through Shinjuku",
+    "Hachikō, Shibuya Sky, Meiji Jingu y Omotesando": "Hachikō, Shibuya Sky, Meiji Jingu and Omotesando",
+    "Sensō-ji, Nakamise, Tokyo Skytree": "Sensō-ji, Nakamise, Tokyo Skytree",
+    "Día completo en el parque": "Full day at the park",
+    "Toyosu, Ginza y Tokyo Station · noche en Kabukichō": "Toyosu, Ginza and Tokyo Station · night in Kabukichō",
+    "Excursión de día completo. Regreso a Tokio": "Full-day excursion. Return to Tokyo",
+    "Shinkansen, Fushimi Inari, Gion y Pontocho": "Shinkansen, Fushimi Inari, Gion and Pontocho",
+    "Bosque de bambú y Nishiki Market": "Bamboo forest and Nishiki Market",
+    "Parque de Nara, Tōdai-ji y Naramachi. Regreso a Kioto": "Nara Park, Tōdai-ji and Naramachi. Return to Kyoto",
+    "Higashiyama, Yasaka Shrine y ceremonia del té": "Higashiyama, Yasaka Shrine and tea ceremony",
+    "Kuromon Market, Shinsaibashi y Dotonbori": "Kuromon Market, Shinsaibashi and Dotonbori",
+    "Umeda Sky Building, compras y Dotonbori": "Umeda Sky Building, shopping and Dotonbori",
+    "Excursión de día completo. Regreso a Osaka": "Full-day excursion. Return to Osaka",
+    "Últimas compras y traslado al aeropuerto": "Last-minute shopping and transfer to the airport",
+    "Llegada al aeropuerto de Tokio": "Arrival at Tokyo airport",
+    "Traslado al hotel en Shinjuku": "Transfer to the hotel in Shinjuku",
+    "Paseo por Shinjuku": "Walk around Shinjuku",
+    "Descanso del vuelo, cena por cuenta propia": "Rest from the flight, dinner on your own",
+    "Estatua de Hachikō y cruce de Shibuya": "Hachikō statue and Shibuya crossing",
+    "Mirador panorámico": "Panoramic viewpoint",
+    "Harajuku y Takeshita-dori": "Harajuku and Takeshita-dori",
+    "Santuario Meiji Jingu": "Meiji Jingu Shrine",
+    "Entrada al santuario sin costo; jardín interior con tarifa": "Free shrine entry; inner garden has a fee",
+    "Paseo y compras": "Stroll and shopping",
+    "Templo Sensō-ji y calle Nakamise": "Sensō-ji Temple and Nakamise street",
+    "Mirador": "Viewpoint",
+    "Paseo, tiendas de electrónica y anime": "Stroll, electronics and anime shops",
+    "Tokyo DisneySea · día completo": "Tokyo DisneySea · full day",
+    "Boleto de entrada al parque": "Park admission ticket",
+    "Museo inmersivo": "Immersive museum",
+    "Mercado de Toyosu": "Toyosu Market",
+    "Noche en Kabukichō / Shinjuku": "Night in Kabukichō / Shinjuku",
+    "Excursión Monte Fuji + Lago Kawaguchiko": "Mount Fuji + Lake Kawaguchiko excursion",
+    "Tour de día completo, incluye transporte": "Full-day tour, transport included",
+    "Traslado en tren Tokio → Kioto": "Train transfer Tokyo → Kyoto",
+    "Santuario Fushimi Inari": "Fushimi Inari Shrine",
+    "Miles de torii": "Thousands of torii gates",
+    "Gion y Pontocho": "Gion and Pontocho",
+    "Barrio de geishas, paseo nocturno": "Geisha district, night stroll",
+    "Bosque de Bambú de Arashiyama": "Arashiyama Bamboo Forest",
+    "Kinkaku-ji (Pabellón Dorado)": "Kinkaku-ji (Golden Pavilion)",
+    "Compras opcionales": "Optional shopping",
+    "Parque de Nara (ciervos)": "Nara Park (deer)",
+    "Templo Tōdai-ji": "Tōdai-ji Temple",
+    "Santuario Kasuga Taisha": "Kasuga Taisha Shrine",
+    "Entrada al santuario sin costo": "Free shrine entry",
+    "Barrio histórico, paseo": "Historic neighborhood, stroll",
+    "Templo Kiyomizu-dera": "Kiyomizu-dera Temple",
+    "Callejones históricos, paseo": "Historic alleys, stroll",
+    "Santuario Yasaka": "Yasaka Shrine",
+    "Ceremonia del té": "Tea ceremony",
+    "Traslado en tren Kioto → Osaka": "Train transfer Kyoto → Osaka",
+    "Mercado Kuromon": "Kuromon Market",
+    "Comida callejera por cuenta propia": "Street food on your own",
+    "Paseo, compras y cena": "Stroll, shopping and dinner",
+    "Shinsaibashi y Dotonbori": "Shinsaibashi and Dotonbori",
+    "Universal Studios Japan · día completo": "Universal Studios Japan · full day",
+    "Jardines exteriores gratis; interior/museo con costo": "Outer gardens free; interior/museum has a fee",
+    "Umeda Sky Building": "Umeda Sky Building",
+    "Compras y Dotonbori": "Shopping and Dotonbori",
+    "Parque Memorial de la Paz de Hiroshima": "Hiroshima Peace Memorial Park",
+    "Parque gratis; museo con costo": "Park is free; museum has a fee",
+    "Isla de Miyajima y Santuario Itsukushima": "Miyajima Island and Itsukushima Shrine",
+    "Ferry + entrada al santuario": "Ferry + shrine entry",
+    "Traslado en tren Osaka → Tokio": "Train transfer Osaka → Tokyo",
+    "Últimas compras / paseo": "Last-minute shopping / stroll",
+    "Traslado al aeropuerto y vuelo de regreso": "Transfer to the airport and return flight",
+    "Salida de Tokio por la noche (ver pestaña Vuelos)": "Departs Tokyo at night (see Flights tab)",
+    "🆓 Incluido en hospedaje": "🆓 Included in lodging",
+    "🆓 Gratis": "🆓 Free",
+    "💴 Con costo · Pendiente": "💴 Paid · Pending",
+    "🆓 Gratis (compras opcionales)": "🆓 Free (optional shopping)",
+    "🆓 Gratis (entrada)": "🆓 Free (entry)",
+    "🆓 Gratis (paseo)": "🆓 Free (stroll)",
+    "🆓 Gratis (parque)": "🆓 Free (park)",
+    "Actividades propuestas y flexibles — pueden ajustarse según el ritmo y gustos del viaje. Los precios de entradas marcados como \"Pendiente\" se confirmarán antes de cerrar la cotización.": "Proposed and flexible activities — they can be adjusted based on the trip's pace and preferences. Entrance prices marked as \"Pending\" will be confirmed before finalizing the quote.",
+    "3 opciones de origen": "3 origin options",
+    "Cada grupo tiene su propio costo por persona según su ciudad de origen. Pago de vuelos en una sola exhibición.": "Each group has its own cost per person based on their city of origin. Flights are paid in a single payment.",
+    "Grupo 1 · Desde Arizona (vía Los Ángeles)": "Group 1 · From Arizona (via Los Angeles)",
+    "Grupo 2 · Desde CDMX (vía Los Ángeles)": "Group 2 · From CDMX (via Los Angeles)",
+    "Grupo 3 · V2 Directo desde CDMX (Aeroméxico)": "Group 3 · V2 Direct from CDMX (Aeroméxico)",
+    "Phoenix → Los Ángeles": "Phoenix → Los Angeles",
+    "Los Ángeles → Tokio": "Los Angeles → Tokyo",
+    "Tokio → Los Ángeles → Phoenix": "Tokyo → Los Angeles → Phoenix",
+    "CDMX → Los Ángeles": "CDMX → Los Angeles",
+    "Tokio → Los Ángeles → CDMX": "Tokyo → Los Angeles → CDMX",
+    "CDMX → Tokio directo": "CDMX → Tokyo direct",
+    "Tokio → CDMX directo": "Tokyo → CDMX direct",
+    "Total por persona": "Total per person",
+    "7 de marzo · Con cambios, no reembolsable, asiento seleccionado + 1 maleta documentada": "March 7 · Changeable, non-refundable, seat selection + 1 checked bag",
+    "Delta Airlines · Llegada 8 de marzo": "Delta Airlines · Arrival March 8",
+    "Regreso: sale 22 de marzo, llega el mismo día": "Return: departs March 22, arrives the same day",
+    "Incluido": "Included",
+    "Aeroméxico · Sale 7 de marzo por la mañana, llega 8 de marzo": "Aeroméxico · Departs the morning of March 7, arrives March 8",
+    "Regreso: sale 22 de marzo por la noche, llega el mismo día": "Return: departs the night of March 22, arrives the same day",
+    "Sin escala en Los Ángeles — vuelo directo en ambos tramos": "No layover in Los Angeles — direct flight on both legs",
+    "Condiciones:": "Conditions:",
+    "Todos los boletos son con cambios permitidos, no reembolsables, incluyen selección de asiento y 1 maleta documentada. Pago en una sola exhibición.": "All tickets allow changes, are non-refundable, and include seat selection and 1 checked bag. Payment in a single installment.",
+    "3 ciudades": "3 cities",
+    "3 hoteles confirmados con tarifas para habitación de 5 o de 4 personas. Recuerda: una misma habitación puede combinar viajeros de distinto origen de vuelo.": "3 confirmed hotels with rates for 5-person or 4-person rooms. Remember: the same room can combine travelers from different flight origins.",
+    "📍 Tokio · 8 — 14 Mar · 6 noches": "📍 Tokyo · Mar 8 — 14 · 6 nights",
+    "📍 Kioto · 14 — 18 Mar · 4 noches": "📍 Kyoto · Mar 14 — 18 · 4 nights",
+    "📍 Osaka · 18 — 22 Mar · 4 noches": "📍 Osaka · Mar 18 — 22 · 4 nights",
+    "✦ Propuesta": "✦ Proposed",
+    "Desayuno incluido": "Breakfast included",
+    "Paga hasta 18 MSI": "Pay up to 18 interest-free installments",
+    "18 MSI": "18 interest-free installments",
+    "Habitación 5 personas": "5-person room",
+    "Habitación 4 personas": "4-person room",
+    "6 noches, desayuno incluido": "6 nights, breakfast included",
+    "4 noches, desayuno incluido": "4 nights, breakfast included",
+    "Ver sitio oficial del hotel →": "View hotel's official site →",
+    "Ver disponibilidad →": "Check availability →",
+    "Vuelos + hospedaje": "Flights + lodging",
+    "Desglose de vuelo (según origen) y hospedaje (según tamaño de habitación). No incluye entradas, tours ni traslados en Shinkansen — ver notas \"Pendiente\" en Itinerario.": "Breakdown of flight (by origin) and lodging (by room size). Does not include entrance fees, tours, or Shinkansen transfers — see \"Pending\" notes in Itinerary.",
+    "Hospedaje por persona (3 hoteles)": "Lodging per person (3 hotels)",
+    "Si viaja en habitación de ": "If in a room of ",
+    "5 personas": "5 people",
+    "4 personas": "4 people",
+    "Tokio 580 + Kioto/Kanazawa 440 + Osaka 420 USD": "Tokyo 580 + Kyoto/Kanazawa 440 + Osaka 420 USD",
+    "Tokio 675 + Kioto/Kanazawa 550 + Osaka 475 USD": "Tokyo 675 + Kyoto/Kanazawa 550 + Osaka 475 USD",
+    "Una misma persona puede estar en habitación de 5 en un hotel y de 4 en otro; ajustar según la asignación real de cada viajero.": "The same person could be in a 5-person room at one hotel and a 4-person room at another; adjust based on each traveler's actual assignment.",
+    "Total estimado por persona (vuelo + hospedaje)": "Estimated total per person (flight + lodging)",
+    "Arizona · hab. 5 personas": "Arizona · 5-person room",
+    "Arizona · hab. 4 personas": "Arizona · 4-person room",
+    "CDMX vía LA · hab. 5 personas": "CDMX via LA · 5-person room",
+    "CDMX vía LA · hab. 4 personas": "CDMX via LA · 4-person room",
+    "CDMX directo (V2) · hab. 5 personas": "CDMX direct (V2) · 5-person room",
+    "CDMX directo (V2) · hab. 4 personas": "CDMX direct (V2) · 4-person room",
+    "Pendientes generales": "General pending items",
+    "Traslados en tren entre ciudades (3 tramos)": "Train transfers between cities (3 legs)",
+    "Entradas y tours marcados 💴 en el itinerario": "Entrance fees and tours marked 💴 in the itinerary",
+    "Pendiente": "Pending",
+    "Estos totales son estimados a partir de la información proporcionada. El costo final por persona depende de la asignación exacta de habitaciones y de confirmar los rubros marcados como \"Pendiente\".": "These totals are estimates based on the information provided. The final cost per person depends on the exact room assignment and confirming the items marked as \"Pending\".",
+    "Itinerario Japón · Tokio, Kioto y Osaka": "Japan Itinerary · Tokyo, Kyoto and Osaka",
+    "7 – 22 Marzo 2027 · Cotización preliminar": "March 7 – 22, 2027 · Preliminary quote",
+    "Check-in · Sotetsu Fresa Inn Ginza Nanachome": "Check-in · Sotetsu Fresa Inn Ginza Nanachome",
+    "Check-in · The Kanazawa Sainoniwa Hotel": "Check-in · The Kanazawa Sainoniwa Hotel",
+    "Check-in · KOKO HOTEL Osaka Namba Sennichimae": "Check-in · KOKO HOTEL Osaka Namba Sennichimae",
+    "T&C": "T&C",
+    "Transparencia": "Transparency",
+    "Información importante sobre cambios, cancelaciones y reembolsos.": "Important information about changes, cancellations and refunds.",
+    "01 · Vuelos": "01 · Flights",
+    "Con cambios, no reembolsables": "Changeable, non-refundable",
+    "Todos los boletos aéreos permiten cambios, pero no son reembolsables. Incluyen selección de asiento y 1 maleta documentada por persona. El pago de los vuelos se realiza en una sola exhibición.": "All airline tickets allow changes but are non-refundable. They include seat selection and 1 checked bag per person. Flights are paid in a single payment.",
+    "02 · Hoteles · Reembolsos": "02 · Hotels · Refunds",
+    "Reembolso total hasta 1 mes antes": "Full refund up to 1 month before",
+    "Los hoteles tienen reembolso total si la cancelación se solicita hasta 1 mes antes de la fecha de viaje.": "Hotels offer a full refund if the cancellation is requested up to 1 month before the trip date.",
+    "03 · Hoteles · Cancelación tras confirmar": "03 · Hotels · Cancellation after confirmation",
+    "Multa del 10% tras confirmación": "10% penalty after confirmation",
+    "Una vez que la familia confirma el viaje, si posteriormente se solicita la cancelación, se aplica una multa equivalente al 10% del costo total de los hoteles. Este cargo se hará llegar a través de un link de pago.": "Once the family confirms the trip, if a cancellation is requested afterward, a penalty equal to 10% of the total hotel cost applies. This charge will be sent via a payment link.",
+    "04 · Cambios en la cotización": "04 · Changes to the quote",
+    "3 cambios sin costo, después 50 USD": "3 free changes, then 50 USD",
+    "Se pueden realizar hasta 3 cambios en la cotización sin costo adicional. A partir del 4to cambio, cada uno tiene un cargo de 50 USD.": "Up to 3 changes to the quote can be made at no extra cost. Starting with the 4th change, each one has a 50 USD charge.",
+    "06 · Aceptación": "06 · Acceptance",
+    "05 · Agrupación de familias": "05 · Grouping families together",
+    "Llegada al aeropuerto (Narita o Haneda, según vuelo) y traslado al hotel en Shinjuku.": "Arrival at the airport (Narita or Haneda, depending on flight) and transfer to the hotel in Shinjuku.",
+    "Registro de entrada al hotel y acomodo de equipaje.": "Hotel check-in and settling into your room.",
+    "Recorrido por uno de los barrios más animados de Tokio, con luces de neón, restaurantes e izakayas.": "A walk through one of Tokyo's liveliest neighborhoods, with neon lights, restaurants and izakayas.",
+    "La famosa estatua del perro Hachikō y el cruce peatonal más transitado del mundo.": "The famous Hachikō dog statue and the busiest pedestrian crossing in the world.",
+    "Mirador en la azotea con vistas de 360° de Tokio, ideal para ver el atardecer.": "Rooftop viewpoint with 360° views of Tokyo, great for sunset.",
+    "Calle famosa por la moda juvenil, tiendas excéntricas y crepas japonesas.": "A street famous for youth fashion, quirky shops and Japanese crepes.",
+    "Santuario sintoísta rodeado de un bosque frondoso en pleno centro de Tokio; entrada sin costo, jardín interior con tarifa.": "A Shinto shrine surrounded by a lush forest in the heart of Tokyo; free entry, inner garden has a fee.",
+    "Avenida arbolada con boutiques de lujo y arquitectura moderna.": "A tree-lined avenue with luxury boutiques and modern architecture.",
+    "El templo budista más antiguo de Tokio, con la calle comercial Nakamise llena de puestos tradicionales.": "Tokyo's oldest Buddhist temple, with the Nakamise shopping street full of traditional stalls.",
+    "Una de las torres más altas del mundo, con miradores y vistas de toda la ciudad.": "One of the tallest towers in the world, with observation decks and views of the whole city.",
+    "Barrio conocido por la cultura otaku: tiendas de electrónica, anime, manga y videojuegos.": "A neighborhood known for otaku culture: electronics, anime, manga and video game shops.",
+    "Parque temático inspirado en el mar y la aventura, exclusivo de Tokio.": "A theme park inspired by the sea and adventure, exclusive to Tokyo.",
+    "Museo de arte digital inmersivo con instalaciones interactivas de luz y agua.": "An immersive digital art museum with interactive light and water installations.",
+    "Mercado mayorista de pescado que sustituyó al histórico Tsukiji; subastas de atún y puestos de sushi.": "The wholesale fish market that replaced the historic Tsukiji; tuna auctions and sushi stalls.",
+    "Distrito elegante de compras con tiendas departamentales y boutiques de lujo.": "An upscale shopping district with department stores and luxury boutiques.",
+    "Estación central de trenes con arquitectura histórica de ladrillo rojo.": "The central train station, with historic red-brick architecture.",
+    "Zona de entretenimiento nocturno con restaurantes, bares e izakayas.": "A nightlife district with restaurants, bars and izakayas.",
+    "Vistas del Monte Fuji desde el Lago Kawaguchiko, con paradas fotográficas y actividades junto al lago.": "Views of Mount Fuji from Lake Kawaguchiko, with photo stops and lakeside activities.",
+    "Viaje en tren bala (Shinkansen) de aproximadamente 2 horas y 15 minutos.": "About a 2 hour 15 minute ride on the Shinkansen bullet train.",
+    "Santuario sintoísta famoso por sus miles de puertas torii color naranja que suben la montaña.": "A Shinto shrine famous for its thousands of orange torii gates climbing the mountain.",
+    "Barrios tradicionales conocidos por sus casas de té, geishas y callejones iluminados con farolillos.": "Traditional districts known for teahouses, geishas and lantern-lit alleys.",
+    "Sendero entre altísimos tallos de bambú, uno de los paisajes más fotografiados de Japón.": "A path through towering bamboo stalks, one of the most photographed sights in Japan.",
+    "Templo zen recubierto en pan de oro, reflejado en un estanque tranquilo.": "A Zen temple covered in gold leaf, reflected in a tranquil pond.",
+    "Mercado techado de casi 400 años conocido como 'la cocina de Kioto', con puestos de comida local.": "A nearly 400-year-old covered market known as \"Kyoto's kitchen,\" with local food stalls.",
+    "Parque donde cientos de ciervos sagrados conviven libremente con los visitantes.": "A park where hundreds of sacred deer roam freely among visitors.",
+    "Templo budista que alberga una de las estatuas de Buda de bronce más grandes del mundo.": "A Buddhist temple home to one of the largest bronze Buddha statues in the world.",
+    "Santuario sintoísta famoso por sus miles de faroles de piedra y bronce; entrada al santuario sin costo.": "A Shinto shrine famous for its thousands of stone and bronze lanterns; free shrine entry.",
+    "Antiguo barrio comercial con casas tradicionales de madera, hoy con cafés y tiendas.": "A former merchant district with traditional wooden houses, now home to cafes and shops.",
+    "Templo budista construido sobre pilares de madera, con una terraza con vistas panorámicas de Kioto.": "A Buddhist temple built on wooden pillars, with a terrace offering panoramic views of Kyoto.",
+    "Distrito histórico con calles empedradas, tiendas tradicionales y arquitectura de la era Edo.": "A historic district with cobblestone streets, traditional shops and Edo-era architecture.",
+    "Santuario sintoísta a la entrada del barrio de Gion, punto de partida para explorar Higashiyama.": "A Shinto shrine at the entrance to the Gion district, a good starting point for exploring Higashiyama.",
+    "Experiencia tradicional japonesa para aprender el ritual de preparación y degustación del té matcha.": "A traditional Japanese experience learning the ritual of preparing and tasting matcha tea.",
+    "Viaje en tren de aproximadamente 15 a 30 minutos.": "About a 15 to 30 minute train ride.",
+    "Mercado techado conocido como 'la cocina de Osaka', con mariscos frescos y comida callejera.": "A covered market known as \"Osaka's kitchen,\" with fresh seafood and street food.",
+    "Zona comercial y de entretenimiento con el icónico letrero de Glico y canales iluminados.": "A shopping and entertainment district with the iconic Glico sign and illuminated canals.",
+    "Parque temático con atracciones de Nintendo, Harry Potter y otras franquicias populares.": "A theme park with Nintendo, Harry Potter and other popular franchise attractions.",
+    "Castillo histórico rodeado de jardines, símbolo de la ciudad de Osaka.": "A historic castle surrounded by gardens, a symbol of the city of Osaka.",
+    "Torres gemelas conectadas por un mirador circular en las alturas, con vistas de la ciudad.": "Twin towers connected by a circular observation deck high above, with city views.",
+    "Tiempo libre para compras y explorar los restaurantes de la zona.": "Free time for shopping and exploring the area's restaurants.",
+    "Parque dedicado a las víctimas de la bomba atómica, con la Cúpula Genbaku y el museo conmemorativo.": "A park dedicated to the victims of the atomic bomb, with the Genbaku Dome and the memorial museum.",
+    "Isla famosa por el torii 'flotante' del santuario Itsukushima y los ciervos que pasean libremente.": "An island famous for the \"floating\" torii gate of Itsukushima Shrine and deer that roam freely.",
+    "Viaje en tren bala (Shinkansen) de aproximadamente 2 horas y 30 minutos.": "About a 2 hour 30 minute ride on the Shinkansen bullet train.",
+    "Tiempo libre para compras de último momento antes del vuelo de regreso.": "Free time for last-minute shopping before the return flight.",
+    "✈️ Origen · Salida": "✈️ Origin · Departure",
+    "Domingo · Salida": "Sunday · Departure",
+    "Salida desde origen": "Departure from origin",
+    "Vuelos hacia Tokio, según grupo de origen": "Flights to Tokyo, depending on origin group",
+    "Vuelo de salida desde origen": "Departure flight from origin",
+    "Grupo Arizona (Phoenix), Grupo CDMX vía Los Ángeles, o Grupo CDMX directo (Aeroméxico) — horarios y detalles en la pestaña Vuelos": "Arizona Group (Phoenix), CDMX via Los Angeles Group, or CDMX Direct Group (Aeroméxico) — schedules and details in the Flights tab",
+    "Se busca, pero no se garantiza": "We aim for it, but it isn't guaranteed",
+    "Al ser un viaje de grupo grande, se hará todo lo posible por mantener a todas las familias en el mismo vuelo, el mismo hotel, etc. Sin embargo, esto no es una confirmación y está sujeto a disponibilidad de la aerolínea y los hoteles al momento de la reservación.": "Since this is a large group trip, every effort will be made to keep all families on the same flight, in the same hotel, etc. However, this is not a confirmation and is subject to availability from the airline and hotels at the time of booking.",
+    "Pago = Acuerdo": "Payment = Agreement",
+    "La confirmación de este itinerario implica la aceptación de los términos de la aerolínea, los hoteles y la agencia.": "Confirming this itinerary implies acceptance of the terms of the airline, the hotels, and the agency."
+  };
+
+  const dictHTML = {
+    "hero-title": { es: "Itinerario<br><em>Japón</em> 2027", en: "Japan<br><em>Itinerary</em> 2027" },
+    "title-tyc": { es: "Términos &<br>Condiciones", en: "Terms &<br>Conditions" },
+    "title-itinerario": { es: "15 días<br>por Japón", en: "15 days<br>through Japan" },
+    "title-vuelos": { es: "Vuelos<br>por grupo", en: "Flights<br>by group" },
+    "title-hoteles": { es: "Dónde<br>dormir", en: "Where<br>to stay" },
+    "title-costos": { es: "Costos<br>por persona", en: "Costs<br>per person" }
+  };
+
+  let currentLang = 'es';
+
+  function toggleLang() {
+    currentLang = currentLang === 'es' ? 'en' : 'es';
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const es = el.getAttribute('data-i18n');
+      el.textContent = currentLang === 'es' ? es : (dictEN[es] || es);
+    });
+
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const key = el.getAttribute('data-i18n-html');
+      const entry = dictHTML[key];
+      if (entry) el.innerHTML = currentLang === 'es' ? entry.es : entry.en;
+    });
+
+    document.documentElement.lang = currentLang;
+    const esBtn = document.getElementById('lang-es');
+    const enBtn = document.getElementById('lang-en');
+    if (currentLang === 'es') {
+      esBtn.style.background = 'var(--red-violet)'; esBtn.style.color = '#fff';
+      enBtn.style.background = 'transparent'; enBtn.style.color = 'var(--gray-600)';
+    } else {
+      enBtn.style.background = 'var(--red-violet)'; enBtn.style.color = '#fff';
+      esBtn.style.background = 'transparent'; esBtn.style.color = 'var(--gray-600)';
     }
   }
 </script>
